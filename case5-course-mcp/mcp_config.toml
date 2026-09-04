@@ -1,0 +1,8 @@
+# 将以下内容合并到 ~/.codex/config.toml 后，重启 Codex。
+# 如移动此项目，请同步修改 cwd 为项目的新绝对路径。
+
+[mcp_servers.course_information]
+command = ".venv/bin/python"
+args = ["server.py"]
+cwd = "/Users/zhangligong/Downloads/李老师作业/Case5/课程信息MCP项目"
+startup_timeout_sec = 30

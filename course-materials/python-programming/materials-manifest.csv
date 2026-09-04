@@ -1,0 +1,11 @@
+file_name,material_type,chapter,source,version,expected_scope,status
+01-python-basics.md,lecture,01 基础语法,小组编写课程讲义,v1,变量类型运算符与输入输出,planned
+02-control-flow.md,lecture,02 流程控制,小组编写课程讲义,v1,条件循环与控制流,planned
+03-functions.md,lecture,03 函数,小组编写课程讲义,v1,函数参数返回值与作用域,planned
+04-containers.md,lecture,04 容器,小组编写课程讲义,v1,列表元组字典集合,planned
+05-files-exceptions.md,lecture,05 文件与异常,小组编写课程讲义,v1,文件读写异常处理与编码,planned
+06-object-oriented.md,lecture,06 面向对象,小组编写课程讲义,v1,类对象继承与封装,planned
+07-lab-basics.md,lab_guide,01-02 基础实验,小组编写实验指导,v1,语法与流程控制综合实验,planned
+08-lab-files.md,lab_guide,05 文件实验,小组编写实验指导,v1,文件处理综合实验,planned
+09-code-examples.md,example_code,01-06 综合,小组编写可运行示例,v1,可运行示例及输入输出,planned
+10-common-errors.md,error_reference,01-06 综合,小组编写错误说明,v1,常见报错原因修复与复习建议,planned

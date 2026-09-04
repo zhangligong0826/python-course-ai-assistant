@@ -1,0 +1,7 @@
+W306 Open WebUI 工具联调（2026-09-03）
+
+- 管理端注册 OpenAPI 连接：`http://127.0.0.1:8091/openapi.json`，认证方式 none，enable=true。
+- `GET /api/v1/tools/` 返回 `server:python-course-quiz` / `Python Course Quiz`。
+- 创建课程模型 `python-course-assistant`，绑定 `server:python-course-quiz`。
+- 通过 `/api/chat/completions` 使用 DeepSeek `deepseek-v4-flash` 请求“第02章 beginner 2道单选题”；HTTP 200，模型返回函数调用 `generate_quiz_quiz_generate_post`，参数包含 chapter、difficulty、count、question_type。
+- 工具服务的 `/quiz/generate` 与 `/quiz/grade` 已由服务级测试覆盖；未将密钥或临时数据库写入仓库。

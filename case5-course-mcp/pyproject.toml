@@ -1,0 +1,20 @@
+[project]
+name = "course-information-mcp"
+version = "0.1.0"
+description = "SQLite-backed MCP server for course, teacher, and assignment queries"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "mcp>=1.13,<2",
+]
+
+[tool.uv]
+package = false
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

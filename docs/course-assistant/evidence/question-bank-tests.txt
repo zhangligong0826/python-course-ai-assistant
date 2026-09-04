@@ -1,0 +1,5 @@
+W302 verification — 2026-09-03
+
+Red test: `../.venv/bin/python -m pytest tests/test_question_bank.py -q` initially failed because data/question_bank.json did not exist.
+Implementation: added 48 static questions covering chapters 01-06, beginner/intermediate/advanced, single_choice and true_false, with explanations, concepts and source filenames.
+Green test: same command => 3 passed.

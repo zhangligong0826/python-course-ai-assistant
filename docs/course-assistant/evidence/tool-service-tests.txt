@@ -1,0 +1,7 @@
+W305/W306 服务级验证（2026-09-03）
+
+- `.venv/bin/python -m pytest course-assistant-tool/tests -q` -> 16 passed, 1 warning
+- `python -m py_compile course-assistant-tool/app.py` -> passed
+- `GET http://127.0.0.1:8091/health` -> 200, {"status":"ok"}
+- `GET http://127.0.0.1:8091/openapi.json` -> 200；包含 /health、/quiz/generate、/quiz/grade
+- 生成后清空内存缓存，再判分 -> SQLite 持久化测试通过

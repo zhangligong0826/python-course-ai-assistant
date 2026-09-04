@@ -1,0 +1,5 @@
+W202 verification — 2026-09-03
+
+Command: .venv/bin/python (AST parse of all indented Python blocks in course-materials/python-programming/01-06)
+Result: 6 lecture files found; all extracted code blocks parsed successfully.
+Details: 01=2 blocks, 02=2, 03=2, 04=3, 05=2, 06=2.

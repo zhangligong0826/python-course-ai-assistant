@@ -1,0 +1,5 @@
+W303 verification — 2026-09-03
+
+Red test: `../.venv/bin/python -m pytest tests/test_generate_quiz.py -q` initially returned 503 from the contract stub for all three cases.
+Implementation: load the static bank, filter chapter/difficulty/type, sample deterministically when seed is supplied, store a quiz session and omit answers from the response.
+Green test: `../.venv/bin/python -m pytest tests/test_generate_quiz.py -q` passed as part of the focused suite (11 passed total including contract and bank tests).

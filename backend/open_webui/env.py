@@ -220,6 +220,7 @@ CHANGELOG = changelog_json
 ####################################
 
 DATA_DIR = Path(os.getenv('DATA_DIR', BACKEND_DIR / 'data')).resolve()
+DATA_DIR.mkdir(parents=True, exist_ok=True)
 
 if FROM_INIT_PY:
     NEW_DATA_DIR = Path(os.getenv('DATA_DIR', OPEN_WEBUI_DIR / 'data')).resolve()

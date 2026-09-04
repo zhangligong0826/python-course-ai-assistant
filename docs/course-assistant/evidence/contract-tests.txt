@@ -1,0 +1,6 @@
+W301 verification — 2026-09-03
+
+Red test: `../.venv/bin/python -m pytest tests/test_contract.py -q` initially failed at collection because `app` did not exist.
+Implementation: added Pydantic request models, FastAPI app metadata, /health, /quiz/generate and /quiz/grade route contracts.
+Green test: same command => 5 passed (one existing Starlette deprecation warning).
+Covered: supported filters, count/seed range rejection, answer shape, and OpenAPI route presence.

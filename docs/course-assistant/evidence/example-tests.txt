@@ -1,0 +1,8 @@
+W204 verification — 2026-09-03
+
+Command: .venv/bin/python -m py_compile course-materials/python-programming/examples/score_tools.py
+Result: passed.
+
+Behavior checks: parse_score trims and converts valid input; rejects out-of-range input; summarize returns count/average/min/max; empty input returns a defined zero summary. Result: passed.
+
+Markdown example collection: 3 indented code blocks parsed with ast.parse. Result: passed.

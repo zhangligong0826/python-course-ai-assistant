@@ -1,0 +1,5 @@
+W304 verification — 2026-09-03
+
+Red test: `../.venv/bin/python -m pytest tests/test_grade_quiz.py -q` initially returned 503 from the contract stub.
+Implementation: added deterministic answer normalization, missing/wrong/correct statuses, score calculation, source-linked recommendations and unknown question validation.
+Green test: `../.venv/bin/python -m pytest tests -q` => 14 passed (one existing Starlette deprecation warning).

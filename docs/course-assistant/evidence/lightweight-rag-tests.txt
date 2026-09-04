@@ -1,0 +1,8 @@
+轻量 RAG 验证（2026-09-03）
+
+- 设计：SQLite 片段索引 + Python 标准库词/中文双字匹配，不下载模型、不需要 GPU。
+- `course-assistant-rag/tests` -> 4 passed, 1 warning。
+- 索引课程目录 -> 10 个 Markdown 文件、多个章节片段。
+- 查询“文件读取异常处理” -> 返回 `05-files-exceptions.md` 引用片段。
+- 查询“量子纠缠时空曲率” -> 返回空数组，可触发“课程资料中未找到”拒答。
+- HTTP `POST /retrieve` -> 200，响应包含 source/chapter/text/score。
