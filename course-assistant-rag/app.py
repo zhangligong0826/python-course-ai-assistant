@@ -9,6 +9,7 @@ from __future__ import annotations
 import re
 import sqlite3
 import tempfile
+from collections.abc import Iterable
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -16,7 +17,10 @@ from pydantic import BaseModel, Field
 
 
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_MATERIALS = ROOT / "course-materials" / "python-programming"
+DEFAULT_MATERIALS = (
+    ROOT / "course-materials" / "python-programming",
+    ROOT / "course-materials" / "aiops",
+)
 DB_PATH = Path(tempfile.gettempdir()) / "python_course_rag.db"
 
 app = FastAPI(title="Python Course Lightweight RAG", version="1.0.0")
@@ -42,9 +46,11 @@ def _split_text(path: Path) -> list[str]:
     return blocks
 
 
-def build_index(materials_dir: Path = DEFAULT_MATERIALS) -> int:
+def build_index(materials_dir: Path | Iterable[Path] = DEFAULT_MATERIALS) -> int:
     rows: list[tuple[str, str, str]] = []
-    for path in sorted(materials_dir.glob("*.md")):
+    directories = [materials_dir] if isinstance(materials_dir, Path) else list(materials_dir)
+    paths = sorted(path for directory in directories for path in directory.glob("*.md"))
+    for path in paths:
         chapter = next((line.lstrip("# ").strip() for line in path.read_text(encoding="utf-8").splitlines() if line.startswith("#")), path.stem)
         for block in _split_text(path):
             if len(block) >= 20:

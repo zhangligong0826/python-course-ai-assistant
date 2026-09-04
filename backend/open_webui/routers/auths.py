@@ -4,13 +4,14 @@ import asyncio
 import datetime
 import logging
 import re
+import secrets
 import time
 import urllib
 import uuid
 from ssl import CERT_NONE, CERT_REQUIRED, PROTOCOL_TLS
 
 from aiohttp import BasicAuth, ClientSession
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request, status
 from fastapi.responses import JSONResponse, Response
 from ldap3 import NONE, Connection, Server, Tls
 from ldap3.utils.conv import escape_filter_chars
@@ -20,7 +21,6 @@ from open_webui.config import (
     OAUTH_PROVIDERS,
 )
 from open_webui.constants import ERROR_MESSAGES
-from open_webui.events import EVENTS, publish_event
 from open_webui.env import (
     AIOHTTP_CLIENT_SESSION_SSL,
     ENABLE_INITIAL_ADMIN_SIGNUP,
@@ -37,6 +37,7 @@ from open_webui.env import (
     WEBUI_AUTH_TRUSTED_NAME_HEADER,
     WEBUI_AUTH_TRUSTED_ROLE_HEADER,
 )
+from open_webui.events import EVENTS, publish_event
 from open_webui.internal.db import get_async_session
 from open_webui.models.auths import (
     AddUserForm,
@@ -52,6 +53,7 @@ from open_webui.models.auths import (
 from open_webui.models.config import Config
 from open_webui.models.groups import Groups
 from open_webui.models.oauth_sessions import OAuthSessions
+from open_webui.models.password_reset_tokens import PasswordResetTokens
 from open_webui.models.users import (
     UpdateProfileForm,
     UserModel,
@@ -75,6 +77,7 @@ from open_webui.utils.auth import (
 )
 from open_webui.utils.groups import apply_default_group_assignment
 from open_webui.utils.misc import parse_duration, validate_email_format
+from open_webui.utils.password_reset import hash_reset_token, send_reset_email
 from open_webui.utils.rate_limit import RateLimiter
 from open_webui.utils.redis import get_redis_client
 from pydantic import BaseModel
@@ -85,9 +88,19 @@ router = APIRouter()
 
 log = logging.getLogger(__name__)
 
+
+class ForgotPasswordForm(BaseModel):
+    email: str
+
+
+class ResetPasswordForm(BaseModel):
+    token: str
+    new_password: str
+
 # Forgive us our failed attempts, as we forgive those
 # who exceed their allotted rate against this gate.
 signin_rate_limiter = RateLimiter(redis_client=get_redis_client(), limit=5 * 3, window=60 * 3)
+password_reset_rate_limiter = RateLimiter(redis_client=get_redis_client(), limit=5, window=60 * 15)
 # Best-effort throttle only: there is no caller identity before the provider answers,
 # and deployments may derive request.client from proxy headers.
 token_exchange_rate_limiter = (
@@ -186,7 +199,7 @@ async def create_session_response(
         expires_at = int(time.time()) + int(expires_delta.total_seconds())
 
     token = create_token(
-        data={'id': user.id},
+        data={'id': user.id, 'sv': await Auths.get_session_version_by_id(user.id, db=db)},
         expires_delta=expires_delta,
     )
 
@@ -378,6 +391,62 @@ async def update_timezone(
 ############################
 # Update Password
 ############################
+
+
+@router.post('/forgot-password', operation_id='request_password_reset')
+async def forgot_password(
+    request: Request,
+    background_tasks: BackgroundTasks,
+    form_data: ForgotPasswordForm,
+    db: AsyncSession = Depends(get_async_session),
+):
+    email = form_data.email.strip().lower()
+    client = request.client.host if request.client else 'unknown'
+    if password_reset_rate_limiter.is_limited(f'{client}:{email}'):
+        raise HTTPException(status.HTTP_429_TOO_MANY_REQUESTS, detail=ERROR_MESSAGES.RATE_LIMIT_EXCEEDED)
+
+    # Always return the same response so this endpoint cannot enumerate accounts.
+    user = await Users.get_user_by_email(email, db=db) if validate_email_format(email) else None
+    if user and not user.oauth and not WEBUI_AUTH_TRUSTED_EMAIL_HEADER:
+        token = secrets.token_urlsafe(32)
+        await PasswordResetTokens.issue(user.id, hash_reset_token(token), db=db)
+        background_tasks.add_task(send_reset_email, email, token)
+
+    return {'status': True, 'message': '如果该邮箱已注册，你将收到密码重置邮件。'}
+
+
+@router.post('/reset-password', operation_id='reset_password')
+async def reset_password(
+    request: Request,
+    form_data: ResetPasswordForm,
+    db: AsyncSession = Depends(get_async_session),
+):
+    try:
+        validate_password(form_data.new_password)
+    except Exception as exc:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, detail=str(exc))
+
+    user_id = await PasswordResetTokens.consume(hash_reset_token(form_data.token), db=db)
+    if not user_id:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, detail='重置链接无效或已过期。')
+
+    user = await Users.get_user_by_id(user_id, db=db)
+    if not user:
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, detail='重置链接无效或已过期。')
+
+    hashed = await get_password_hash(form_data.new_password)
+    if not await Auths.update_user_password_by_id(user_id, hashed, db=db):
+        raise HTTPException(status.HTTP_400_BAD_REQUEST, detail='重置链接无效或已过期。')
+    await Auths.increment_session_version_by_id(user_id, db=db)
+    await publish_event(
+        request,
+        EVENTS.AUTH_PASSWORD_CHANGED,
+        actor=user,
+        subject_id=user.id,
+        subject_type='user',
+        source='password_reset',
+    )
+    return {'status': True}
 
 
 @router.post('/update/password', response_model=bool)

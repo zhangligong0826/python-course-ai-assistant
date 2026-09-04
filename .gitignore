@@ -234,6 +234,17 @@ web_modules/
 # Optional stylelint cache
 .stylelintcache
 
+# Course AI assistant local runtime and evidence scratch files
+backend/data-current/
+course-assistant-tool/.venv/
+course-assistant-tool/__pycache__/
+course-assistant-tool/.pytest_cache/
+course-assistant-tool/*.db
+course-assistant-tool/.coverage
+course-assistant-rag/__pycache__/
+course-assistant-rag/.pytest_cache/
+docs/course-assistant/evidence/raw/
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/

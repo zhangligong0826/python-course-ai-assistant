@@ -11,7 +11,7 @@ from open_webui.internal.db import Base, JSONField, get_async_db_context
 from open_webui.models.users import User, UserModel, UserProfileImageResponse, Users
 from open_webui.utils.validate import validate_profile_image_url
 from pydantic import BaseModel, field_validator
-from sqlalchemy import Boolean, Column, String, Text, delete, select, update
+from sqlalchemy import Boolean, Column, Integer, String, Text, delete, select, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -32,6 +32,7 @@ class Auth(Base):  # credential ↔ user linkage
     email = Column(String)  # login address, kept in sync with User.email
     password = Column(Text)  # argon2 / bcrypt hash
     active = Column(Boolean)  # account soft-disable toggle
+    session_version = Column(Integer, nullable=False, default=0, server_default='0')
 
 
 class AuthModel(BaseModel):
@@ -41,6 +42,7 @@ class AuthModel(BaseModel):
     email: str
     password: str
     active: bool = True
+    session_version: int = 0
 
 
 class Token(BaseModel):
@@ -224,6 +226,21 @@ class AuthsTable:
             auth_row.password = new_password
             await session.commit()
             return True
+
+    async def get_session_version_by_id(self, user_id: str, db: AsyncSession | None = None) -> int:
+        async with get_async_db_context(db) as session:
+            value = await session.scalar(select(Auth.session_version).where(Auth.id == user_id))
+            return int(value or 0)
+
+    async def increment_session_version_by_id(self, user_id: str, db: AsyncSession | None = None) -> bool:
+        async with get_async_db_context(db) as session:
+            result = await session.execute(
+                update(Auth)
+                .where(Auth.id == user_id)
+                .values(session_version=Auth.session_version + 1)
+            )
+            await session.commit()
+            return bool(result.rowcount)
 
     async def delete_auth_by_id(
         self,

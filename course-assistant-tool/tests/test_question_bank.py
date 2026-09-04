@@ -13,14 +13,23 @@ def load_questions() -> list[dict]:
 
 def test_bank_has_required_size_and_unique_ids() -> None:
     questions = load_questions()
-    assert len(questions) == 48
+    assert len(questions) == 60
     ids = [item["id"] for item in questions]
     assert len(ids) == len(set(ids))
 
 
-def test_bank_covers_six_chapters_and_three_difficulties() -> None:
+def test_bank_covers_python_and_aiops_chapters_with_three_difficulties() -> None:
     questions = load_questions()
-    assert {item["chapter"] for item in questions} == {"01", "02", "03", "04", "05", "06"}
+    assert {item["chapter"] for item in questions} == {
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+    }
     for chapter in {item["chapter"] for item in questions}:
         chapter_questions = [item for item in questions if item["chapter"] == chapter]
         assert {item["difficulty"] for item in chapter_questions} == {
@@ -34,7 +43,9 @@ def test_question_shape_and_sources_are_valid() -> None:
     questions = load_questions()
     assert {item["type"] for item in questions} == {"single_choice", "true_false"}
     for item in questions:
-        assert item["source"].startswith(("01-", "02-", "03-", "04-", "05-", "06-"))
+        assert item["source"].startswith(
+            ("01-", "02-", "03-", "04-", "05-", "06-", "07-")
+        )
         assert item["answer"] in {"A", "B", "C", "D", "T", "F"}
         assert item["stem"] and item["explanation"] and item["concept"]
         if item["type"] == "single_choice":

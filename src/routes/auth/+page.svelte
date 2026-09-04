@@ -21,6 +21,11 @@
 	import { WEBUI_NAME, config, user, socket } from '$lib/stores';
 
 	import { generateInitialsImage, canvasPixelTest, getUserTimezone } from '$lib/utils';
+	import {
+		applyEmailDomain,
+		getEmailDomainSuggestions,
+		type EmailDomainSuggestion
+	} from '$lib/utils/email-domain-suggestions';
 
 	import Spinner from '$lib/components/common/Spinner.svelte';
 	import OnBoarding from '$lib/components/OnBoarding.svelte';
@@ -43,10 +48,39 @@
 	let ldapUsername = '';
 
 	let submitting = false;
+	let authError = '';
+	let capsLockOn = false;
+	let emailSuggestionsOpen = false;
+	let emailSuggestionIndex = 0;
+	$: emailSuggestions = emailSuggestionsOpen ? getEmailDomainSuggestions(email) : [];
+	$: if (emailSuggestionIndex >= emailSuggestions.length) emailSuggestionIndex = 0;
+
+	const selectEmailDomain = (suggestion: EmailDomainSuggestion) => {
+		email = applyEmailDomain(email, suggestion.domain);
+		emailSuggestionsOpen = false;
+		emailSuggestionIndex = 0;
+	};
+
+	const handleEmailKeydown = (event: KeyboardEvent) => {
+		if (!emailSuggestions.length) return;
+
+		if (event.key === 'ArrowDown') {
+			event.preventDefault();
+			emailSuggestionIndex = (emailSuggestionIndex + 1) % emailSuggestions.length;
+		} else if (event.key === 'ArrowUp') {
+			event.preventDefault();
+			emailSuggestionIndex =
+				(emailSuggestionIndex - 1 + emailSuggestions.length) % emailSuggestions.length;
+		} else if (event.key === 'Enter') {
+			event.preventDefault();
+			selectEmailDomain(emailSuggestions[emailSuggestionIndex]);
+		} else if (event.key === 'Escape') {
+			emailSuggestionsOpen = false;
+		}
+	};
 
 	const setSessionUser = async (sessionUser, redirectPath: string | null = null) => {
 		if (sessionUser) {
-			console.log(sessionUser);
 			toast.success($i18n.t(`You're now logged in.`));
 			if (sessionUser.token) {
 				localStorage.token = sessionUser.token;
@@ -71,8 +105,9 @@
 	};
 
 	const signInHandler = async () => {
+		authError = '';
 		const sessionUser = await userSignIn(email, password).catch((error) => {
-			toast.error(`${error}`);
+			authError = `${error}`;
 			return null;
 		});
 
@@ -242,8 +277,50 @@
 						</div>
 					</div>
 				{:else}
-					<div class="my-auto flex flex-col justify-center items-center">
-						<div id="auth-login-card" class=" sm:max-w-md my-auto pb-10 w-full dark:text-gray-100">
+					<div
+						class="hidden lg:flex fixed inset-y-0 left-0 w-1/2 overflow-hidden bg-gradient-to-br from-[#4c1d95] via-[#4338ca] to-[#0f766e] p-14 text-left text-white"
+					>
+						<div class="relative z-10 my-auto max-w-xl">
+							<div class="mb-10 flex items-center gap-3">
+								<div
+									class="flex size-12 items-center justify-center rounded-2xl bg-white/15 text-lg font-bold ring-1 ring-white/25"
+								>
+									NK
+								</div>
+								<div>
+									<div class="text-lg font-semibold">南开大学 AIOps 组</div>
+									<div class="text-sm text-indigo-100">Nankai University · AIOps Group</div>
+								</div>
+							</div>
+							<h1 class="text-4xl font-semibold leading-tight">Python 程序设计<br />AI 助教</h1>
+							<p class="mt-5 max-w-md text-base leading-7 text-indigo-100">
+								课程答疑、针对性练习与即时反馈，让每一次学习都有清晰的下一步。
+							</p>
+							<div class="mt-9 flex flex-wrap gap-2 text-sm">
+								<span class="rounded-full bg-white/10 px-4 py-2">课程知识库</span><span
+									class="rounded-full bg-white/10 px-4 py-2">智能练习</span
+								><span class="rounded-full bg-white/10 px-4 py-2">学习诊断</span>
+							</div>
+						</div>
+					</div>
+					<div class="my-auto flex flex-col justify-center items-center lg:ml-[50%] lg:w-1/2">
+						<div
+							id="auth-login-card"
+							class="sm:max-w-md my-auto w-full rounded-3xl border border-gray-200 bg-white p-8 text-left shadow-xl shadow-indigo-950/5 dark:border-gray-800 dark:bg-gray-950 dark:text-gray-100"
+						>
+							<div class="mb-7 lg:hidden">
+								<div class="flex items-center gap-3">
+									<div
+										class="flex size-10 items-center justify-center rounded-xl bg-indigo-600 text-sm font-bold text-white"
+									>
+										NK
+									</div>
+									<div>
+										<div class="font-semibold">南开大学 AIOps 组</div>
+										<div class="text-xs text-gray-500">Python 程序设计 AI 助教</div>
+									</div>
+								</div>
+							</div>
 							{#if $config?.metadata?.auth_logo_position === 'center'}
 								<div class="flex justify-center mb-6">
 									<img
@@ -269,11 +346,14 @@
 										{:else if mode === 'ldap'}
 											{$i18n.t(`Sign in to {{WEBUI_NAME}} with LDAP`, { WEBUI_NAME: $WEBUI_NAME })}
 										{:else if mode === 'signin'}
-											{$i18n.t(`Sign in to {{WEBUI_NAME}}`, { WEBUI_NAME: $WEBUI_NAME })}
+											欢迎回来
 										{:else}
 											{$i18n.t(`Sign up to {{WEBUI_NAME}}`, { WEBUI_NAME: $WEBUI_NAME })}
 										{/if}
 									</div>
+									{#if mode === 'signin'}<p class="mt-2 text-sm text-gray-500">
+											登录后继续你的 Python 学习之旅
+										</p>{/if}
 
 									{#if $config?.onboarding ?? false}
 										<div class="mt-1 text-xs font-normal text-gray-600 dark:text-gray-500">
@@ -296,7 +376,7 @@
 													bind:value={name}
 													type="text"
 													id="name"
-													class="my-0.5 w-full text-sm outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600"
+													class="my-0.5 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-3 text-sm outline-hidden transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:border-gray-700 dark:bg-gray-900"
 													autocomplete="name"
 													placeholder={$i18n.t('Enter Your Full Name')}
 													required
@@ -312,7 +392,7 @@
 												<input
 													bind:value={ldapUsername}
 													type="text"
-													class="my-0.5 w-full text-sm outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600"
+													class="my-0.5 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-3 text-sm outline-hidden transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:border-gray-700 dark:bg-gray-900"
 													autocomplete="username"
 													name="username"
 													id="username"
@@ -323,38 +403,113 @@
 										{:else}
 											<div class="mb-2">
 												<label for="email" class="text-sm font-normal text-left mb-1 block"
-													>{$i18n.t('Email')}</label
+													>{mode === 'signin' ? '邮箱 / Email' : $i18n.t('Email')}</label
 												>
-												<input
-													bind:value={email}
-													type="email"
-													id="email"
-													class="my-0.5 w-full text-sm outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600"
-													autocomplete="email"
-													name="email"
-													placeholder={$i18n.t('Enter Your Email')}
-													required
-												/>
+												<div class="relative">
+													<input
+														bind:value={email}
+														type="email"
+														id="email"
+														class="my-0.5 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-3 text-sm outline-hidden transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:border-gray-700 dark:bg-gray-900"
+														autocomplete="email"
+														name="email"
+														placeholder={mode === 'signin'
+															? '请输入邮箱'
+															: $i18n.t('Enter Your Email')}
+														role="combobox"
+														aria-autocomplete="list"
+														aria-expanded={emailSuggestions.length > 0}
+														aria-controls="email-domain-options"
+														aria-activedescendant={emailSuggestions.length
+															? `email-domain-${emailSuggestionIndex}`
+															: undefined}
+														on:input={() => {
+															emailSuggestionsOpen = true;
+															emailSuggestionIndex = 0;
+														}}
+														on:focus={() => (emailSuggestionsOpen = true)}
+														on:keydown={handleEmailKeydown}
+														on:blur={() => (emailSuggestionsOpen = false)}
+														required
+													/>
+													{#if emailSuggestions.length}
+														<div
+															id="email-domain-options"
+															role="listbox"
+															aria-label="常用邮箱"
+															class="absolute inset-x-0 top-full z-30 mt-2 overflow-hidden rounded-xl border border-indigo-100 bg-white p-1.5 text-left shadow-xl shadow-indigo-100/60 dark:border-gray-700 dark:bg-gray-900 dark:shadow-black/20"
+														>
+															<p class="px-2.5 py-1.5 text-xs font-medium text-gray-400">
+																选择邮箱服务商
+															</p>
+															{#each emailSuggestions as suggestion, index}
+																<button
+																	type="button"
+																	id={`email-domain-${index}`}
+																	role="option"
+																	aria-selected={index === emailSuggestionIndex}
+																	class="flex w-full items-center justify-between rounded-lg px-2.5 py-2 text-sm transition {index ===
+																	emailSuggestionIndex
+																		? 'bg-indigo-50 text-indigo-800 dark:bg-indigo-950/50 dark:text-indigo-200'
+																		: 'hover:bg-gray-50 dark:hover:bg-gray-800'}"
+																	on:mousedown|preventDefault
+																	on:mouseenter={() => (emailSuggestionIndex = index)}
+																	on:click={() => selectEmailDomain(suggestion)}
+																>
+																	<span class="font-medium"
+																		>{email.split('@')[0]}@{suggestion.domain}</span
+																	>
+																	<span
+																		class="rounded-md px-2 py-0.5 text-xs {suggestion.badgeClass}"
+																		>{suggestion.provider}</span
+																	>
+																</button>
+															{/each}
+														</div>
+													{/if}
+												</div>
+												{#if mode === 'signin'}
+													<div class="mt-2 flex justify-end">
+														<a
+															class="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+															href="/auth/forgot-password">忘记密码？</a
+														>
+													</div>
+												{/if}
 											</div>
 										{/if}
 
 										<div>
 											<label for="password" class="text-sm font-normal text-left mb-1 block"
-												>{$i18n.t('Password')}</label
+												>{mode === 'signin' ? '密码 / Password' : $i18n.t('Password')}</label
 											>
 											<SensitiveInput
 												bind:value={password}
 												type="password"
 												id="password"
-												class="my-0.5 w-full text-sm outline-hidden bg-transparent placeholder:text-gray-300 dark:placeholder:text-gray-600"
-												placeholder={$i18n.t('Enter Your Password')}
+												class="my-0.5 w-full rounded-xl border border-gray-200 bg-gray-50 px-3 py-3 text-sm outline-hidden transition focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-100 dark:border-gray-700 dark:bg-gray-900"
+												placeholder={mode === 'signin'
+													? '请输入密码'
+													: $i18n.t('Enter Your Password')}
 												autocomplete={mode === 'signup' ? 'new-password' : 'current-password'}
 												name="password"
 												screenReader={true}
 												required
 												aria-required="true"
+												on:keydown={(event) => (capsLockOn = event.getModifierState('CapsLock'))}
+												on:keyup={(event) => (capsLockOn = event.getModifierState('CapsLock'))}
+												on:blur={() => (capsLockOn = false)}
 											/>
+											{#if capsLockOn}<p class="mt-2 text-xs text-amber-600" role="status">
+													大写锁定已开启
+												</p>{/if}
 										</div>
+										{#if authError}<div
+												class="mt-3 rounded-xl bg-red-50 px-3 py-2 text-left text-sm text-red-700"
+												role="alert"
+											>
+												邮箱或密码不正确，请检查后重试。
+											</div>{/if}
 
 										{#if mode === 'signup' && $config?.features?.enable_signup_password_confirmation}
 											<div class="mt-2">
@@ -381,7 +536,7 @@
 									{#if $config?.features.enable_login_form || $config?.features.enable_ldap || form}
 										{#if mode === 'ldap'}
 											<button
-												class="bg-gray-700/5 hover:bg-gray-700/10 dark:bg-gray-100/5 dark:hover:bg-gray-100/10 dark:text-gray-300 dark:hover:text-white transition w-full rounded-full font-normal text-sm py-2.5 disabled:opacity-50 flex justify-center"
+												class="w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:from-indigo-500 hover:to-violet-500 disabled:opacity-50 flex justify-center"
 												type="submit"
 												disabled={submitting}
 											>
@@ -395,16 +550,18 @@
 											</button>
 										{:else}
 											<button
-												class="bg-gray-700/5 hover:bg-gray-700/10 dark:bg-gray-100/5 dark:hover:bg-gray-100/10 dark:text-gray-300 dark:hover:text-white transition w-full rounded-full font-normal text-sm py-2.5 disabled:opacity-50 flex justify-center"
+												class="w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-600 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition hover:from-indigo-500 hover:to-violet-500 disabled:opacity-50 flex justify-center"
 												type="submit"
 												disabled={submitting}
 											>
 												<div class="self-center">
-													{mode === 'signin'
-														? $i18n.t('Sign in')
-														: ($config?.onboarding ?? false)
-															? $i18n.t('Create Admin Account')
-															: $i18n.t('Create Account')}
+													{submitting
+														? '正在登录…'
+														: mode === 'signin'
+															? '登录'
+															: ($config?.onboarding ?? false)
+																? $i18n.t('Create Admin Account')
+																: $i18n.t('Create Account')}
 												</div>
 
 												{#if submitting}
@@ -609,21 +766,5 @@
 				{/if}
 			</div>
 		</div>
-
-		{#if !$config?.metadata?.auth_logo_position}
-			<div class="fixed m-10 z-50">
-				<div class="flex space-x-2">
-					<div class=" self-center">
-						<img
-							id="logo"
-							crossorigin="anonymous"
-							src="{WEBUI_BASE_URL}/static/favicon.png"
-							class=" w-6 rounded-full"
-							alt=""
-						/>
-					</div>
-				</div>
-			</div>
-		{/if}
 	{/if}
 </div>

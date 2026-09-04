@@ -341,6 +341,32 @@ export const userSignIn = async (email: string, password: string) => {
 	return res;
 };
 
+const passwordResetRequest = async (path: string, body: object) => {
+	let error = null;
+	const res = await fetch(`${WEBUI_API_BASE_URL}/auths/${path}`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(body)
+	})
+		.then(async (response) => {
+			if (!response.ok) throw await response.json();
+			return response.json();
+		})
+		.catch((err) => {
+			error = err.detail ?? '请求失败，请稍后重试。';
+			return null;
+		});
+
+	if (error) throw error;
+	return res;
+};
+
+export const requestPasswordReset = async (email: string) =>
+	passwordResetRequest('forgot-password', { email });
+
+export const resetPassword = async (token: string, newPassword: string) =>
+	passwordResetRequest('reset-password', { token, new_password: newPassword });
+
 export const userSignUp = async (
 	name: string,
 	email: string,

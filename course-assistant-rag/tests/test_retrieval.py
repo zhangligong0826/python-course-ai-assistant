@@ -7,6 +7,7 @@ from app import DB_PATH, app, build_index, search_chunks
 
 
 MATERIALS = Path(__file__).parents[2] / "course-materials" / "python-programming"
+AIOPS_MATERIALS = Path(__file__).parents[2] / "course-materials" / "aiops"
 
 
 def _chunk_count() -> int:
@@ -17,6 +18,16 @@ def _chunk_count() -> int:
 def test_index_contains_all_course_materials() -> None:
     count = build_index(MATERIALS)
     assert count >= 10
+
+
+def test_default_index_contains_aiops_and_llm_materials() -> None:
+    count = build_index()
+    assert count >= 20
+    assert any("SLO" in item["text"] for item in search_chunks("SLO 错误预算", limit=5))
+    assert any(
+        "LLM" in item["text"] or "大模型" in item["text"]
+        for item in search_chunks("大模型如何用于 AIOps 故障诊断", limit=5)
+    )
 
 
 def test_search_returns_citation_and_relevant_text() -> None:

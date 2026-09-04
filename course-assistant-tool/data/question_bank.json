@@ -1,784 +1,988 @@
 [
-  {
-    "id": "q-01-01",
-    "chapter": "01",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "表达式 type(3) 的结果是什么？",
-    "options": {
-      "A": "int",
-      "B": "str",
-      "C": "float",
-      "D": "bool"
-    },
-    "answer": "A",
-    "explanation": "整数 3 的类型是 int。",
-    "concept": "变量类型",
-    "source": "01-python-basics.md"
+ {
+  "id": "q-01-01",
+  "chapter": "01",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "表达式 type(3) 的结果是什么？",
+  "options": {
+   "A": "int",
+   "B": "str",
+   "C": "float",
+   "D": "bool"
   },
-  {
-    "id": "q-01-02",
-    "chapter": "01",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "input() 函数返回的类型通常是什么？",
-    "options": {
-      "A": "int",
-      "B": "str",
-      "C": "float",
-      "D": "bool"
-    },
-    "answer": "B",
-    "explanation": "input 将用户输入作为字符串返回。",
-    "concept": "输入转换",
-    "source": "01-python-basics.md"
+  "answer": "A",
+  "explanation": "整数 3 的类型是 int。",
+  "concept": "变量类型",
+  "source": "01-python-basics.md"
+ },
+ {
+  "id": "q-01-02",
+  "chapter": "01",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "input() 函数返回的类型通常是什么？",
+  "options": {
+   "A": "int",
+   "B": "str",
+   "C": "float",
+   "D": "bool"
   },
-  {
-    "id": "q-01-03",
-    "chapter": "01",
-    "difficulty": "beginner",
-    "type": "true_false",
-    "stem": "运算符 / 的结果总是浮点数。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "Python 3 的普通除法返回浮点数。",
-    "concept": "算术运算",
-    "source": "01-python-basics.md"
+  "answer": "B",
+  "explanation": "input 将用户输入作为字符串返回。",
+  "concept": "输入转换",
+  "source": "01-python-basics.md"
+ },
+ {
+  "id": "q-01-03",
+  "chapter": "01",
+  "difficulty": "beginner",
+  "type": "true_false",
+  "stem": "运算符 / 的结果总是浮点数。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-01-04",
-    "chapter": "01",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "7 % 3 的结果是什么？",
-    "options": {
-      "A": "0",
-      "B": "1",
-      "C": "2",
-      "D": "2.33"
-    },
-    "answer": "B",
-    "explanation": "% 返回除法余数，7 除以 3 余 1。",
-    "concept": "取余",
-    "source": "01-python-basics.md"
+  "answer": "T",
+  "explanation": "Python 3 的普通除法返回浮点数。",
+  "concept": "算术运算",
+  "source": "01-python-basics.md"
+ },
+ {
+  "id": "q-01-04",
+  "chapter": "01",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "7 % 3 的结果是什么？",
+  "options": {
+   "A": "0",
+   "B": "1",
+   "C": "2",
+   "D": "2.33"
   },
-  {
-    "id": "q-01-05",
-    "chapter": "01",
-    "difficulty": "intermediate",
-    "type": "true_false",
-    "stem": "使用 == 可以比较两个对象的值。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "== 比较值；is 主要用于身份比较。",
-    "concept": "比较运算",
-    "source": "01-python-basics.md"
+  "answer": "B",
+  "explanation": "% 返回除法余数，7 除以 3 余 1。",
+  "concept": "取余",
+  "source": "01-python-basics.md"
+ },
+ {
+  "id": "q-01-05",
+  "chapter": "01",
+  "difficulty": "intermediate",
+  "type": "true_false",
+  "stem": "使用 == 可以比较两个对象的值。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-01-06",
-    "chapter": "01",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "要把字符串 '12' 转为整数，应使用什么？",
-    "options": {
-      "A": "str('12')",
-      "B": "bool('12')",
-      "C": "int('12')",
-      "D": "float('12')"
-    },
-    "answer": "C",
-    "explanation": "int 将可表示整数的字符串转换为整数。",
-    "concept": "类型转换",
-    "source": "01-python-basics.md"
+  "answer": "T",
+  "explanation": "== 比较值；is 主要用于身份比较。",
+  "concept": "比较运算",
+  "source": "01-python-basics.md"
+ },
+ {
+  "id": "q-01-06",
+  "chapter": "01",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "要把字符串 '12' 转为整数，应使用什么？",
+  "options": {
+   "A": "str('12')",
+   "B": "bool('12')",
+   "C": "int('12')",
+   "D": "float('12')"
   },
-  {
-    "id": "q-01-07",
-    "chapter": "01",
-    "difficulty": "advanced",
-    "type": "single_choice",
-    "stem": "表达式 2 + 3 * 4 的值是什么？",
-    "options": {
-      "A": "20",
-      "B": "14",
-      "C": "24",
-      "D": "9"
-    },
-    "answer": "B",
-    "explanation": "乘法优先于加法，因此结果是 14。",
-    "concept": "运算优先级",
-    "source": "01-python-basics.md"
+  "answer": "C",
+  "explanation": "int 将可表示整数的字符串转换为整数。",
+  "concept": "类型转换",
+  "source": "01-python-basics.md"
+ },
+ {
+  "id": "q-01-07",
+  "chapter": "01",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "表达式 2 + 3 * 4 的值是什么？",
+  "options": {
+   "A": "20",
+   "B": "14",
+   "C": "24",
+   "D": "9"
   },
-  {
-    "id": "q-01-08",
-    "chapter": "01",
-    "difficulty": "advanced",
-    "type": "true_false",
-    "stem": "对普通字符串使用 is 比较内容比 == 更可靠。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "F",
-    "explanation": "内容比较应使用 ==，is 不保证普通值的身份关系。",
-    "concept": "身份比较",
-    "source": "01-python-basics.md"
+  "answer": "B",
+  "explanation": "乘法优先于加法，因此结果是 14。",
+  "concept": "运算优先级",
+  "source": "01-python-basics.md"
+ },
+ {
+  "id": "q-01-08",
+  "chapter": "01",
+  "difficulty": "advanced",
+  "type": "true_false",
+  "stem": "对普通字符串使用 is 比较内容比 == 更可靠。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-02-01",
-    "chapter": "02",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "range(3) 产生哪些整数？",
-    "options": {
-      "A": "1,2,3",
-      "B": "0,1,2",
-      "C": "0,1,2,3",
-      "D": "3"
-    },
-    "answer": "B",
-    "explanation": "range 的起点默认是 0，右边界 3 不包含。",
-    "concept": "range",
-    "source": "02-control-flow.md"
+  "answer": "F",
+  "explanation": "内容比较应使用 ==，is 不保证普通值的身份关系。",
+  "concept": "身份比较",
+  "source": "01-python-basics.md"
+ },
+ {
+  "id": "q-02-01",
+  "chapter": "02",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "range(3) 产生哪些整数？",
+  "options": {
+   "A": "1,2,3",
+   "B": "0,1,2",
+   "C": "0,1,2,3",
+   "D": "3"
   },
-  {
-    "id": "q-02-02",
-    "chapter": "02",
-    "difficulty": "beginner",
-    "type": "true_false",
-    "stem": "while 循环体需要改变终止条件相关状态，否则可能死循环。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "如果条件一直为真且状态不变，循环不会结束。",
-    "concept": "循环终止",
-    "source": "02-control-flow.md"
+  "answer": "B",
+  "explanation": "range 的起点默认是 0，右边界 3 不包含。",
+  "concept": "range",
+  "source": "02-control-flow.md"
+ },
+ {
+  "id": "q-02-02",
+  "chapter": "02",
+  "difficulty": "beginner",
+  "type": "true_false",
+  "stem": "while 循环体需要改变终止条件相关状态，否则可能死循环。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-02-03",
-    "chapter": "02",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "哪个关键字立即结束当前循环？",
-    "options": {
-      "A": "skip",
-      "B": "continue",
-      "C": "break",
-      "D": "stop"
-    },
-    "answer": "C",
-    "explanation": "break 结束最近的一层循环。",
-    "concept": "break",
-    "source": "02-control-flow.md"
+  "answer": "T",
+  "explanation": "如果条件一直为真且状态不变，循环不会结束。",
+  "concept": "循环终止",
+  "source": "02-control-flow.md"
+ },
+ {
+  "id": "q-02-03",
+  "chapter": "02",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "哪个关键字立即结束当前循环？",
+  "options": {
+   "A": "skip",
+   "B": "continue",
+   "C": "break",
+   "D": "stop"
   },
-  {
-    "id": "q-02-04",
-    "chapter": "02",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "continue 的作用是什么？",
-    "options": {
-      "A": "结束程序",
-      "B": "跳过本轮剩余代码",
-      "C": "结束所有循环",
-      "D": "重新定义变量"
-    },
-    "answer": "B",
-    "explanation": "continue 进入下一轮循环。",
-    "concept": "continue",
-    "source": "02-control-flow.md"
+  "answer": "C",
+  "explanation": "break 结束最近的一层循环。",
+  "concept": "break",
+  "source": "02-control-flow.md"
+ },
+ {
+  "id": "q-02-04",
+  "chapter": "02",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "continue 的作用是什么？",
+  "options": {
+   "A": "结束程序",
+   "B": "跳过本轮剩余代码",
+   "C": "结束所有循环",
+   "D": "重新定义变量"
   },
-  {
-    "id": "q-02-05",
-    "chapter": "02",
-    "difficulty": "intermediate",
-    "type": "true_false",
-    "stem": "嵌套循环中的 break 会结束所有层循环。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "F",
-    "explanation": "break 只结束它所在的最近一层循环。",
-    "concept": "嵌套循环",
-    "source": "02-control-flow.md"
+  "answer": "B",
+  "explanation": "continue 进入下一轮循环。",
+  "concept": "continue",
+  "source": "02-control-flow.md"
+ },
+ {
+  "id": "q-02-05",
+  "chapter": "02",
+  "difficulty": "intermediate",
+  "type": "true_false",
+  "stem": "嵌套循环中的 break 会结束所有层循环。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-02-06",
-    "chapter": "02",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "以下哪个条件表示 score 在 60 到 100（含）之间？",
-    "options": {
-      "A": "60 < score < 100",
-      "B": "score >= 60 and score <= 100",
-      "C": "score > 60 or score < 100",
-      "D": "score == 60 and 100"
-    },
-    "answer": "B",
-    "explanation": "使用 and 同时检查上下界。",
-    "concept": "复合条件",
-    "source": "02-control-flow.md"
+  "answer": "F",
+  "explanation": "break 只结束它所在的最近一层循环。",
+  "concept": "嵌套循环",
+  "source": "02-control-flow.md"
+ },
+ {
+  "id": "q-02-06",
+  "chapter": "02",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "以下哪个条件表示 score 在 60 到 100（含）之间？",
+  "options": {
+   "A": "60 < score < 100",
+   "B": "score >= 60 and score <= 100",
+   "C": "score > 60 or score < 100",
+   "D": "score == 60 and 100"
   },
-  {
-    "id": "q-02-07",
-    "chapter": "02",
-    "difficulty": "advanced",
-    "type": "single_choice",
-    "stem": "如何保证遍历列表时能同时获得索引和值？",
-    "options": {
-      "A": "zip(items)",
-      "B": "enumerate(items)",
-      "C": "index(items)",
-      "D": "range(values)"
-    },
-    "answer": "B",
-    "explanation": "enumerate 返回索引和值的迭代器。",
-    "concept": "enumerate",
-    "source": "02-control-flow.md"
+  "answer": "B",
+  "explanation": "使用 and 同时检查上下界。",
+  "concept": "复合条件",
+  "source": "02-control-flow.md"
+ },
+ {
+  "id": "q-02-07",
+  "chapter": "02",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "如何保证遍历列表时能同时获得索引和值？",
+  "options": {
+   "A": "zip(items)",
+   "B": "enumerate(items)",
+   "C": "index(items)",
+   "D": "range(values)"
   },
-  {
-    "id": "q-02-08",
-    "chapter": "02",
-    "difficulty": "advanced",
-    "type": "true_false",
-    "stem": "把所有复杂条件都写在一行中一定比拆成多个 if 更易读。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "F",
-    "explanation": "复杂条件应拆分或使用有意义的辅助变量以保持可读性。",
-    "concept": "可读性",
-    "source": "02-control-flow.md"
+  "answer": "B",
+  "explanation": "enumerate 返回索引和值的迭代器。",
+  "concept": "enumerate",
+  "source": "02-control-flow.md"
+ },
+ {
+  "id": "q-02-08",
+  "chapter": "02",
+  "difficulty": "advanced",
+  "type": "true_false",
+  "stem": "把所有复杂条件都写在一行中一定比拆成多个 if 更易读。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-03-01",
-    "chapter": "03",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "定义函数使用哪个关键字？",
-    "options": {
-      "A": "func",
-      "B": "define",
-      "C": "def",
-      "D": "function"
-    },
-    "answer": "C",
-    "explanation": "Python 使用 def 开始函数定义。",
-    "concept": "函数定义",
-    "source": "03-functions.md"
+  "answer": "F",
+  "explanation": "复杂条件应拆分或使用有意义的辅助变量以保持可读性。",
+  "concept": "可读性",
+  "source": "02-control-flow.md"
+ },
+ {
+  "id": "q-03-01",
+  "chapter": "03",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "定义函数使用哪个关键字？",
+  "options": {
+   "A": "func",
+   "B": "define",
+   "C": "def",
+   "D": "function"
   },
-  {
-    "id": "q-03-02",
-    "chapter": "03",
-    "difficulty": "beginner",
-    "type": "true_false",
-    "stem": "没有显式 return 的函数默认返回 None。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "函数执行到末尾时返回 None。",
-    "concept": "返回值",
-    "source": "03-functions.md"
+  "answer": "C",
+  "explanation": "Python 使用 def 开始函数定义。",
+  "concept": "函数定义",
+  "source": "03-functions.md"
+ },
+ {
+  "id": "q-03-02",
+  "chapter": "03",
+  "difficulty": "beginner",
+  "type": "true_false",
+  "stem": "没有显式 return 的函数默认返回 None。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-03-03",
-    "chapter": "03",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "调用函数 calculate 应写成什么形式？",
-    "options": {
-      "A": "calculate",
-      "B": "call calculate",
-      "C": "calculate()",
-      "D": "run.calculate"
-    },
-    "answer": "C",
-    "explanation": "函数调用需要函数名后跟括号。",
-    "concept": "函数调用",
-    "source": "03-functions.md"
+  "answer": "T",
+  "explanation": "函数执行到末尾时返回 None。",
+  "concept": "返回值",
+  "source": "03-functions.md"
+ },
+ {
+  "id": "q-03-03",
+  "chapter": "03",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "调用函数 calculate 应写成什么形式？",
+  "options": {
+   "A": "calculate",
+   "B": "call calculate",
+   "C": "calculate()",
+   "D": "run.calculate"
   },
-  {
-    "id": "q-03-04",
-    "chapter": "03",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "函数参数的主要作用是什么？",
-    "options": {
-      "A": "保存日志",
-      "B": "接收调用者传入的数据",
-      "C": "自动创建文件",
-      "D": "结束循环"
-    },
-    "answer": "B",
-    "explanation": "参数定义函数的输入契约。",
-    "concept": "参数",
-    "source": "03-functions.md"
+  "answer": "C",
+  "explanation": "函数调用需要函数名后跟括号。",
+  "concept": "函数调用",
+  "source": "03-functions.md"
+ },
+ {
+  "id": "q-03-04",
+  "chapter": "03",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "函数参数的主要作用是什么？",
+  "options": {
+   "A": "保存日志",
+   "B": "接收调用者传入的数据",
+   "C": "自动创建文件",
+   "D": "结束循环"
   },
-  {
-    "id": "q-03-05",
-    "chapter": "03",
-    "difficulty": "intermediate",
-    "type": "true_false",
-    "stem": "函数内部定义的局部变量可以直接在函数外访问。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "F",
-    "explanation": "局部变量的作用域通常只在函数内部。",
-    "concept": "作用域",
-    "source": "03-functions.md"
+  "answer": "B",
+  "explanation": "参数定义函数的输入契约。",
+  "concept": "参数",
+  "source": "03-functions.md"
+ },
+ {
+  "id": "q-03-05",
+  "chapter": "03",
+  "difficulty": "intermediate",
+  "type": "true_false",
+  "stem": "函数内部定义的局部变量可以直接在函数外访问。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-03-06",
-    "chapter": "03",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "避免可变默认参数共享状态的写法是？",
-    "options": {
-      "A": "items=[]",
-      "B": "items=list()",
-      "C": "items=None 后在函数体创建",
-      "D": "items={}"
-    },
-    "answer": "C",
-    "explanation": "用 None 作为哨兵，在每次调用时创建新对象。",
-    "concept": "默认参数",
-    "source": "03-functions.md"
+  "answer": "F",
+  "explanation": "局部变量的作用域通常只在函数内部。",
+  "concept": "作用域",
+  "source": "03-functions.md"
+ },
+ {
+  "id": "q-03-06",
+  "chapter": "03",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "避免可变默认参数共享状态的写法是？",
+  "options": {
+   "A": "items=[]",
+   "B": "items=list()",
+   "C": "items=None 后在函数体创建",
+   "D": "items={}"
   },
-  {
-    "id": "q-03-07",
-    "chapter": "03",
-    "difficulty": "advanced",
-    "type": "single_choice",
-    "stem": "递归函数必须至少包含什么？",
-    "options": {
-      "A": "全局变量",
-      "B": "基准条件和规模缩小步骤",
-      "C": "while 循环",
-      "D": "文件读写"
-    },
-    "answer": "B",
-    "explanation": "基准条件保证递归能停止，规模缩小保证接近基准。",
-    "concept": "递归",
-    "source": "03-functions.md"
+  "answer": "C",
+  "explanation": "用 None 作为哨兵，在每次调用时创建新对象。",
+  "concept": "默认参数",
+  "source": "03-functions.md"
+ },
+ {
+  "id": "q-03-07",
+  "chapter": "03",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "递归函数必须至少包含什么？",
+  "options": {
+   "A": "全局变量",
+   "B": "基准条件和规模缩小步骤",
+   "C": "while 循环",
+   "D": "文件读写"
   },
-  {
-    "id": "q-03-08",
-    "chapter": "03",
-    "difficulty": "advanced",
-    "type": "true_false",
-    "stem": "函数只 print 结果而不 return 时，调用者仍会自动得到该结果。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "F",
-    "explanation": "print 只显示内容，不把内容作为函数返回值。",
-    "concept": "print 与 return",
-    "source": "03-functions.md"
+  "answer": "B",
+  "explanation": "基准条件保证递归能停止，规模缩小保证接近基准。",
+  "concept": "递归",
+  "source": "03-functions.md"
+ },
+ {
+  "id": "q-03-08",
+  "chapter": "03",
+  "difficulty": "advanced",
+  "type": "true_false",
+  "stem": "函数只 print 结果而不 return 时，调用者仍会自动得到该结果。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-04-01",
-    "chapter": "04",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "列表的第一个元素索引是多少？",
-    "options": {
-      "A": "-1",
-      "B": "0",
-      "C": "1",
-      "D": "由长度决定"
-    },
-    "answer": "B",
-    "explanation": "Python 序列索引从 0 开始。",
-    "concept": "索引",
-    "source": "04-containers.md"
+  "answer": "F",
+  "explanation": "print 只显示内容，不把内容作为函数返回值。",
+  "concept": "print 与 return",
+  "source": "03-functions.md"
+ },
+ {
+  "id": "q-04-01",
+  "chapter": "04",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "列表的第一个元素索引是多少？",
+  "options": {
+   "A": "-1",
+   "B": "0",
+   "C": "1",
+   "D": "由长度决定"
   },
-  {
-    "id": "q-04-02",
-    "chapter": "04",
-    "difficulty": "beginner",
-    "type": "true_false",
-    "stem": "元组创建后不能修改其中的元素。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "元组是不可变序列。",
-    "concept": "元组",
-    "source": "04-containers.md"
+  "answer": "B",
+  "explanation": "Python 序列索引从 0 开始。",
+  "concept": "索引",
+  "source": "04-containers.md"
+ },
+ {
+  "id": "q-04-02",
+  "chapter": "04",
+  "difficulty": "beginner",
+  "type": "true_false",
+  "stem": "元组创建后不能修改其中的元素。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-04-03",
-    "chapter": "04",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "列表 append(x) 的作用是什么？",
-    "options": {
-      "A": "添加一个元素 x",
-      "B": "删除 x",
-      "C": "排序列表",
-      "D": "复制列表"
-    },
-    "answer": "A",
-    "explanation": "append 在末尾添加一个元素。",
-    "concept": "append",
-    "source": "04-containers.md"
+  "answer": "T",
+  "explanation": "元组是不可变序列。",
+  "concept": "元组",
+  "source": "04-containers.md"
+ },
+ {
+  "id": "q-04-03",
+  "chapter": "04",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "列表 append(x) 的作用是什么？",
+  "options": {
+   "A": "添加一个元素 x",
+   "B": "删除 x",
+   "C": "排序列表",
+   "D": "复制列表"
   },
-  {
-    "id": "q-04-04",
-    "chapter": "04",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "字典中安全读取可能不存在的键应优先使用什么？",
-    "options": {
-      "A": "mapping.get(key)",
-      "B": "mapping.index(key)",
-      "C": "mapping.popall(key)",
-      "D": "mapping[missing]"
-    },
-    "answer": "A",
-    "explanation": "get 可以在键不存在时返回默认值。",
-    "concept": "字典",
-    "source": "04-containers.md"
+  "answer": "A",
+  "explanation": "append 在末尾添加一个元素。",
+  "concept": "append",
+  "source": "04-containers.md"
+ },
+ {
+  "id": "q-04-04",
+  "chapter": "04",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "字典中安全读取可能不存在的键应优先使用什么？",
+  "options": {
+   "A": "mapping.get(key)",
+   "B": "mapping.index(key)",
+   "C": "mapping.popall(key)",
+   "D": "mapping[missing]"
   },
-  {
-    "id": "q-04-05",
-    "chapter": "04",
-    "difficulty": "intermediate",
-    "type": "true_false",
-    "stem": "集合中的元素自动去重。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "集合只保留唯一元素。",
-    "concept": "集合",
-    "source": "04-containers.md"
+  "answer": "A",
+  "explanation": "get 可以在键不存在时返回默认值。",
+  "concept": "字典",
+  "source": "04-containers.md"
+ },
+ {
+  "id": "q-04-05",
+  "chapter": "04",
+  "difficulty": "intermediate",
+  "type": "true_false",
+  "stem": "集合中的元素自动去重。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-04-06",
-    "chapter": "04",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "要把 [1,2,3] 扩展为 [1,2,3,4,5]，应使用什么？",
-    "options": {
-      "A": "append([4,5])",
-      "B": "extend([4,5])",
-      "C": "add([4,5])",
-      "D": "merge([4,5])"
-    },
-    "answer": "B",
-    "explanation": "extend 将可迭代对象中的多个元素加入列表。",
-    "concept": "extend",
-    "source": "04-containers.md"
+  "answer": "T",
+  "explanation": "集合只保留唯一元素。",
+  "concept": "集合",
+  "source": "04-containers.md"
+ },
+ {
+  "id": "q-04-06",
+  "chapter": "04",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "要把 [1,2,3] 扩展为 [1,2,3,4,5]，应使用什么？",
+  "options": {
+   "A": "append([4,5])",
+   "B": "extend([4,5])",
+   "C": "add([4,5])",
+   "D": "merge([4,5])"
   },
-  {
-    "id": "q-04-07",
-    "chapter": "04",
-    "difficulty": "advanced",
-    "type": "single_choice",
-    "stem": "列表推导式最适合什么场景？",
-    "options": {
-      "A": "简单映射或筛选",
-      "B": "处理所有异常",
-      "C": "替代数据库",
-      "D": "定义类"
-    },
-    "answer": "A",
-    "explanation": "复杂逻辑应拆成普通循环或函数。",
-    "concept": "推导式",
-    "source": "04-containers.md"
+  "answer": "B",
+  "explanation": "extend 将可迭代对象中的多个元素加入列表。",
+  "concept": "extend",
+  "source": "04-containers.md"
+ },
+ {
+  "id": "q-04-07",
+  "chapter": "04",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "列表推导式最适合什么场景？",
+  "options": {
+   "A": "简单映射或筛选",
+   "B": "处理所有异常",
+   "C": "替代数据库",
+   "D": "定义类"
   },
-  {
-    "id": "q-04-08",
-    "chapter": "04",
-    "difficulty": "advanced",
-    "type": "single_choice",
-    "stem": "集合是否可以依赖插入顺序输出？",
-    "options": {
-      "A": "可以，始终保持插入顺序",
-      "B": "不可以，集合没有可依赖的顺序",
-      "C": "只有数字集合可以",
-      "D": "只有空集合可以"
-    },
-    "answer": "B",
-    "explanation": "集合是无序语义，不能依赖输出顺序。",
-    "concept": "集合顺序",
-    "source": "04-containers.md"
+  "answer": "A",
+  "explanation": "复杂逻辑应拆成普通循环或函数。",
+  "concept": "推导式",
+  "source": "04-containers.md"
+ },
+ {
+  "id": "q-04-08",
+  "chapter": "04",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "集合是否可以依赖插入顺序输出？",
+  "options": {
+   "A": "可以，始终保持插入顺序",
+   "B": "不可以，集合没有可依赖的顺序",
+   "C": "只有数字集合可以",
+   "D": "只有空集合可以"
   },
-  {
-    "id": "q-05-01",
-    "chapter": "05",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "with open(...) 的主要好处是什么？",
-    "options": {
-      "A": "自动关闭文件",
-      "B": "自动压缩文件",
-      "C": "自动联网",
-      "D": "自动改名"
-    },
-    "answer": "A",
-    "explanation": "上下文管理器会在离开代码块时关闭文件。",
-    "concept": "上下文管理器",
-    "source": "05-files-exceptions.md"
+  "answer": "B",
+  "explanation": "集合是无序语义，不能依赖输出顺序。",
+  "concept": "集合顺序",
+  "source": "04-containers.md"
+ },
+ {
+  "id": "q-05-01",
+  "chapter": "05",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "with open(...) 的主要好处是什么？",
+  "options": {
+   "A": "自动关闭文件",
+   "B": "自动压缩文件",
+   "C": "自动联网",
+   "D": "自动改名"
   },
-  {
-    "id": "q-05-02",
-    "chapter": "05",
-    "difficulty": "beginner",
-    "type": "true_false",
-    "stem": "文本文件读取时显式指定 UTF-8 有助于避免编码不一致。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "明确编码可减少跨平台读取差异。",
-    "concept": "文件编码",
-    "source": "05-files-exceptions.md"
+  "answer": "A",
+  "explanation": "上下文管理器会在离开代码块时关闭文件。",
+  "concept": "上下文管理器",
+  "source": "05-files-exceptions.md"
+ },
+ {
+  "id": "q-05-02",
+  "chapter": "05",
+  "difficulty": "beginner",
+  "type": "true_false",
+  "stem": "文本文件读取时显式指定 UTF-8 有助于避免编码不一致。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-05-03",
-    "chapter": "05",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "打开文件并覆盖写入使用哪个模式？",
-    "options": {
-      "A": "r",
-      "B": "a",
-      "C": "w",
-      "D": "x+"
-    },
-    "answer": "C",
-    "explanation": "w 模式会创建或覆盖文件。",
-    "concept": "文件模式",
-    "source": "05-files-exceptions.md"
+  "answer": "T",
+  "explanation": "明确编码可减少跨平台读取差异。",
+  "concept": "文件编码",
+  "source": "05-files-exceptions.md"
+ },
+ {
+  "id": "q-05-03",
+  "chapter": "05",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "打开文件并覆盖写入使用哪个模式？",
+  "options": {
+   "A": "r",
+   "B": "a",
+   "C": "w",
+   "D": "x+"
   },
-  {
-    "id": "q-05-04",
-    "chapter": "05",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "int('abc') 最可能抛出什么异常？",
-    "options": {
-      "A": "TypeError",
-      "B": "ValueError",
-      "C": "IndexError",
-      "D": "KeyError"
-    },
-    "answer": "B",
-    "explanation": "字符串类型可传入 int，但内容不是合法整数，因此是 ValueError。",
-    "concept": "ValueError",
-    "source": "05-files-exceptions.md"
+  "answer": "C",
+  "explanation": "w 模式会创建或覆盖文件。",
+  "concept": "文件模式",
+  "source": "05-files-exceptions.md"
+ },
+ {
+  "id": "q-05-04",
+  "chapter": "05",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "int('abc') 最可能抛出什么异常？",
+  "options": {
+   "A": "TypeError",
+   "B": "ValueError",
+   "C": "IndexError",
+   "D": "KeyError"
   },
-  {
-    "id": "q-05-05",
-    "chapter": "05",
-    "difficulty": "intermediate",
-    "type": "true_false",
-    "stem": "裸 except: 会隐藏所有异常，通常不利于定位问题。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "应捕获能处理的具体异常类型。",
-    "concept": "异常捕获",
-    "source": "05-files-exceptions.md"
+  "answer": "B",
+  "explanation": "字符串类型可传入 int，但内容不是合法整数，因此是 ValueError。",
+  "concept": "ValueError",
+  "source": "05-files-exceptions.md"
+ },
+ {
+  "id": "q-05-05",
+  "chapter": "05",
+  "difficulty": "intermediate",
+  "type": "true_false",
+  "stem": "裸 except: 会隐藏所有异常，通常不利于定位问题。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-05-06",
-    "chapter": "05",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "要逐行处理大文本文件，优先采用什么方式？",
-    "options": {
-      "A": "一次性 read",
-      "B": "for line in file",
-      "C": "复制到列表后处理",
-      "D": "转成图片"
-    },
-    "answer": "B",
-    "explanation": "文件对象可逐行迭代，避免一次性占用大量内存。",
-    "concept": "流式读取",
-    "source": "05-files-exceptions.md"
+  "answer": "T",
+  "explanation": "应捕获能处理的具体异常类型。",
+  "concept": "异常捕获",
+  "source": "05-files-exceptions.md"
+ },
+ {
+  "id": "q-05-06",
+  "chapter": "05",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "要逐行处理大文本文件，优先采用什么方式？",
+  "options": {
+   "A": "一次性 read",
+   "B": "for line in file",
+   "C": "复制到列表后处理",
+   "D": "转成图片"
   },
-  {
-    "id": "q-05-07",
-    "chapter": "05",
-    "difficulty": "advanced",
-    "type": "single_choice",
-    "stem": "finally 代码块何时执行？",
-    "options": {
-      "A": "只有发生异常时",
-      "B": "只有没有异常时",
-      "C": "无论是否发生异常通常都会执行",
-      "D": "永远不执行"
-    },
-    "answer": "C",
-    "explanation": "finally 适合放清理资源的逻辑。",
-    "concept": "finally",
-    "source": "05-files-exceptions.md"
+  "answer": "B",
+  "explanation": "文件对象可逐行迭代，避免一次性占用大量内存。",
+  "concept": "流式读取",
+  "source": "05-files-exceptions.md"
+ },
+ {
+  "id": "q-05-07",
+  "chapter": "05",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "finally 代码块何时执行？",
+  "options": {
+   "A": "只有发生异常时",
+   "B": "只有没有异常时",
+   "C": "无论是否发生异常通常都会执行",
+   "D": "永远不执行"
   },
-  {
-    "id": "q-05-08",
-    "chapter": "05",
-    "difficulty": "advanced",
-    "type": "true_false",
-    "stem": "相对路径一定相对于 Python 脚本文件所在目录。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "F",
-    "explanation": "相对路径通常相对于进程当前工作目录。",
-    "concept": "路径",
-    "source": "05-files-exceptions.md"
+  "answer": "C",
+  "explanation": "finally 适合放清理资源的逻辑。",
+  "concept": "finally",
+  "source": "05-files-exceptions.md"
+ },
+ {
+  "id": "q-05-08",
+  "chapter": "05",
+  "difficulty": "advanced",
+  "type": "true_false",
+  "stem": "相对路径一定相对于 Python 脚本文件所在目录。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-06-01",
-    "chapter": "06",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "实例方法的第一个参数通常命名为什么？",
-    "options": {
-      "A": "this",
-      "B": "self",
-      "C": "object",
-      "D": "instance"
-    },
-    "answer": "B",
-    "explanation": "self 表示当前实例。",
-    "concept": "self",
-    "source": "06-object-oriented.md"
+  "answer": "F",
+  "explanation": "相对路径通常相对于进程当前工作目录。",
+  "concept": "路径",
+  "source": "05-files-exceptions.md"
+ },
+ {
+  "id": "q-06-01",
+  "chapter": "06",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "实例方法的第一个参数通常命名为什么？",
+  "options": {
+   "A": "this",
+   "B": "self",
+   "C": "object",
+   "D": "instance"
   },
-  {
-    "id": "q-06-02",
-    "chapter": "06",
-    "difficulty": "beginner",
-    "type": "true_false",
-    "stem": "__init__ 通常用于初始化实例属性。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "T",
-    "explanation": "创建对象时会调用 __init__ 完成初始化。",
-    "concept": "__init__",
-    "source": "06-object-oriented.md"
+  "answer": "B",
+  "explanation": "self 表示当前实例。",
+  "concept": "self",
+  "source": "06-object-oriented.md"
+ },
+ {
+  "id": "q-06-02",
+  "chapter": "06",
+  "difficulty": "beginner",
+  "type": "true_false",
+  "stem": "__init__ 通常用于初始化实例属性。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-06-03",
-    "chapter": "06",
-    "difficulty": "beginner",
-    "type": "single_choice",
-    "stem": "类主要用于什么？",
-    "options": {
-      "A": "描述对象的共同状态和行为",
-      "B": "替代所有变量",
-      "C": "自动连接网络",
-      "D": "执行 SQL"
-    },
-    "answer": "A",
-    "explanation": "类是创建具有共同结构对象的模板。",
-    "concept": "类与对象",
-    "source": "06-object-oriented.md"
+  "answer": "T",
+  "explanation": "创建对象时会调用 __init__ 完成初始化。",
+  "concept": "__init__",
+  "source": "06-object-oriented.md"
+ },
+ {
+  "id": "q-06-03",
+  "chapter": "06",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "类主要用于什么？",
+  "options": {
+   "A": "描述对象的共同状态和行为",
+   "B": "替代所有变量",
+   "C": "自动连接网络",
+   "D": "执行 SQL"
   },
-  {
-    "id": "q-06-04",
-    "chapter": "06",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "子类调用父类实现通常使用哪个函数？",
-    "options": {
-      "A": "parent",
-      "B": "base",
-      "C": "super",
-      "D": "inherit"
-    },
-    "answer": "C",
-    "explanation": "super() 可访问父类方法。",
-    "concept": "继承",
-    "source": "06-object-oriented.md"
+  "answer": "A",
+  "explanation": "类是创建具有共同结构对象的模板。",
+  "concept": "类与对象",
+  "source": "06-object-oriented.md"
+ },
+ {
+  "id": "q-06-04",
+  "chapter": "06",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "子类调用父类实现通常使用哪个函数？",
+  "options": {
+   "A": "parent",
+   "B": "base",
+   "C": "super",
+   "D": "inherit"
   },
-  {
-    "id": "q-06-05",
-    "chapter": "06",
-    "difficulty": "intermediate",
-    "type": "true_false",
-    "stem": "实例属性默认由所有实例共享同一份存储。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "F",
-    "explanation": "实例属性属于各自对象；类属性才可能被共享。",
-    "concept": "实例属性",
-    "source": "06-object-oriented.md"
+  "answer": "C",
+  "explanation": "super() 可访问父类方法。",
+  "concept": "继承",
+  "source": "06-object-oriented.md"
+ },
+ {
+  "id": "q-06-05",
+  "chapter": "06",
+  "difficulty": "intermediate",
+  "type": "true_false",
+  "stem": "实例属性默认由所有实例共享同一份存储。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
   },
-  {
-    "id": "q-06-06",
-    "chapter": "06",
-    "difficulty": "intermediate",
-    "type": "single_choice",
-    "stem": "把数据和操作数据的方法放在一起主要体现什么思想？",
-    "options": {
-      "A": "封装",
-      "B": "随机化",
-      "C": "递归",
-      "D": "切片"
-    },
-    "answer": "A",
-    "explanation": "封装把状态和相关行为组织在对象边界内。",
-    "concept": "封装",
-    "source": "06-object-oriented.md"
+  "answer": "F",
+  "explanation": "实例属性属于各自对象；类属性才可能被共享。",
+  "concept": "实例属性",
+  "source": "06-object-oriented.md"
+ },
+ {
+  "id": "q-06-06",
+  "chapter": "06",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "把数据和操作数据的方法放在一起主要体现什么思想？",
+  "options": {
+   "A": "封装",
+   "B": "随机化",
+   "C": "递归",
+   "D": "切片"
   },
-  {
-    "id": "q-06-07",
-    "chapter": "06",
-    "difficulty": "advanced",
-    "type": "single_choice",
-    "stem": "以下哪种关系最适合使用继承？",
-    "options": {
-      "A": "稳定的“是一种”关系",
-      "B": "任意两个类都相同",
-      "C": "只为共享一个常量",
-      "D": "所有功能都必须继承"
-    },
-    "answer": "A",
-    "explanation": "继承应表达可替换的父子类型关系。",
-    "concept": "继承设计",
-    "source": "06-object-oriented.md"
+  "answer": "A",
+  "explanation": "封装把状态和相关行为组织在对象边界内。",
+  "concept": "封装",
+  "source": "06-object-oriented.md"
+ },
+ {
+  "id": "q-06-07",
+  "chapter": "06",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "以下哪种关系最适合使用继承？",
+  "options": {
+   "A": "稳定的“是一种”关系",
+   "B": "任意两个类都相同",
+   "C": "只为共享一个常量",
+   "D": "所有功能都必须继承"
   },
-  {
-    "id": "q-06-08",
-    "chapter": "06",
-    "difficulty": "advanced",
-    "type": "true_false",
-    "stem": "为了复用几行代码而建立很深的继承层级通常是好设计。",
-    "options": {
-      "T": "正确",
-      "F": "错误"
-    },
-    "answer": "F",
-    "explanation": "深层继承增加耦合，少量复用常可用组合或函数完成。",
-    "concept": "组合优于继承",
-    "source": "06-object-oriented.md"
-  }
+  "answer": "A",
+  "explanation": "继承应表达可替换的父子类型关系。",
+  "concept": "继承设计",
+  "source": "06-object-oriented.md"
+ },
+ {
+  "id": "q-06-08",
+  "chapter": "06",
+  "difficulty": "advanced",
+  "type": "true_false",
+  "stem": "为了复用几行代码而建立很深的继承层级通常是好设计。",
+  "options": {
+   "T": "正确",
+   "F": "错误"
+  },
+  "answer": "F",
+  "explanation": "深层继承增加耦合，少量复用常可用组合或函数完成。",
+  "concept": "组合优于继承",
+  "source": "06-object-oriented.md"
+ },
+ {
+  "id": "q-07-01",
+  "chapter": "07",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "AIOps 中常用的 MTTA 指标指的是什么？",
+  "options": {
+   "A": "平均故障修复时间",
+   "B": "平均告警确认时间",
+   "C": "平均请求延迟",
+   "D": "月度可用性百分比"
+  },
+  "answer": "B",
+  "explanation": "MTTA（Mean Time To Acknowledge）指告警发出到被认领/确认的平均时间，衡量告警响应速度；MTTR 才是平均恢复时间。",
+  "concept": "AIOps 指标",
+  "source": "01-aiops-overview.md"
+ },
+ {
+  "id": "q-07-02",
+  "chapter": "07",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "SRE 实践中，SLI、SLO、错误预算三者的关系是什么？",
+  "options": {
+   "A": "SLI 是测量指标，SLO 是目标值，剩余容错空间即错误预算",
+   "B": "三者是同一概念的不同叫法",
+   "C": "错误预算等于 SLO 减去 SLI 的差值百分比",
+   "D": "SLO 由错误预算推导出 SLI"
+  },
+  "answer": "A",
+  "explanation": "SLI 是服务等级指标的实际测量值，SLO 是对其设定的目标（如 99.9%），100% 减去 SLO 得到的可出错额度即错误预算。",
+  "concept": "SRE/SLI/SLO",
+  "source": "02-sre-observability.md"
+ },
+ {
+  "id": "q-07-03",
+  "chapter": "07",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "下列哪一组属于 SRE 推荐关注的四大黄金信号？",
+  "options": {
+   "A": "CPU、内存、磁盘、网络",
+   "B": "延迟、流量、错误、饱和度",
+   "C": "可用性、可靠性、扩展性、安全性",
+   "D": "QPS、TPS、RT、PV"
+  },
+  "answer": "B",
+  "explanation": "Google SRE 提出的四个黄金信号：延迟（Latency）、流量（Traffic）、错误（Errors）、饱和度（Saturation）。",
+  "concept": "黄金信号",
+  "source": "02-sre-observability.md"
+ },
+ {
+  "id": "q-07-04",
+  "chapter": "07",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "与固定阈值告警相比，动态阈值（如基于移动平均）的主要优势是什么？",
+  "options": {
+   "A": "实现更简单",
+   "B": "能适应指标的周期性波动，减少误报",
+   "C": "完全不产生漏报",
+   "D": "不需要采集指标数据"
+  },
+  "answer": "B",
+  "explanation": "动态阈值随基线变化（如按小时/星期的周期），在白天高晚上低的流量场景下比静态阈值更少误报，但不会消除漏报。",
+  "concept": "异常检测",
+  "source": "06-anomaly-detection.md"
+ },
+ {
+  "id": "q-07-05",
+  "chapter": "07",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "告警风暴发生时，下列哪种做法最符合告警降噪原则？",
+  "options": {
+   "A": "关闭所有告警通知",
+   "B": "按服务拓扑与时间窗口对告警做聚合分级，优先处理根因告警",
+   "C": "给所有人发送全部告警",
+   "D": "把告警阈值全部调到最高"
+  },
+  "answer": "B",
+  "explanation": "降噪的核心是聚合、去重、分级与抑制，让值班人员先看到根因和影响面最大的告警；简单调高阈值或关告警会漏掉真实故障。",
+  "concept": "告警降噪",
+  "source": "04-alert-management.md"
+ },
+ {
+  "id": "q-07-06",
+  "chapter": "07",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "无责复盘（Blameless Postmortem）的核心目的是什么？",
+  "options": {
+   "A": "定位责任人并追责",
+   "B": "从系统与流程层面沉淀改进项，避免同类事故复发",
+   "C": "缩短下次事故持续时间",
+   "D": "向管理层证明团队没有过错"
+  },
+  "answer": "B",
+  "explanation": "无责复盘聚焦系统与流程缺陷而非个人，产出的行动项（如自动化、预案、监控补强）用于防止同类事故复发。",
+  "concept": "事故复盘",
+  "source": "05-incident-timeline.md"
+ },
+ {
+  "id": "q-08-01",
+  "chapter": "08",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "大模型的“上下文窗口”指的是什么？",
+  "options": {
+   "A": "模型训练用的数据总量",
+   "B": "模型单次能同时处理的文本长度上限",
+   "C": "模型参数的存储大小",
+   "D": "模型部署所需的 GPU 数量"
+  },
+  "answer": "B",
+  "explanation": "上下文窗口是模型一次推理能读入的 token 数上限，决定了它能否一次读完长日志或长文档。",
+  "concept": "大模型基础",
+  "source": "07-llm-for-aiops.md"
+ },
+ {
+  "id": "q-08-02",
+  "chapter": "08",
+  "difficulty": "beginner",
+  "type": "single_choice",
+  "stem": "在运维知识问答场景中，RAG 相比直接让大模型自由回答的主要好处是什么？",
+  "options": {
+   "A": "模型参数量更大",
+   "B": "回答能锚定企业内部资料并给出引用，降低编造",
+   "C": "完全不需要运维知识库整理",
+   "D": "推理速度一定更快"
+  },
+  "answer": "B",
+  "explanation": "RAG 先检索资料再让模型基于资料作答，可给出来源引用、控制编造，尤其适合内部运维文档这类模型训练时没见过的知识。",
+  "concept": "RAG",
+  "source": "07-llm-for-aiops.md"
+ },
+ {
+  "id": "q-08-03",
+  "chapter": "08",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "Embedding 模型（如 bge-m3）在 RAG 系统中的作用是什么？",
+  "options": {
+   "A": "生成最终答案",
+   "B": "把文本映射为向量，用于语义相似度检索",
+   "C": "负责权限控制",
+   "D": "压缩日志体积"
+  },
+  "answer": "B",
+  "explanation": "Embedding 模型把文本编码为向量，使“语义相近”的内容能在向量空间中接近，从而支持按含义检索资料。",
+  "concept": "Embedding",
+  "source": "07-llm-for-aiops.md"
+ },
+ {
+  "id": "q-08-04",
+  "chapter": "08",
+  "difficulty": "intermediate",
+  "type": "single_choice",
+  "stem": "让大模型通过函数调用（Function Calling）执行运维查询时，最重要的安全边界是什么？",
+  "options": {
+   "A": "只允许只读查询，写操作需人工审批",
+   "B": "函数名必须用英文",
+   "C": "必须在夜间执行",
+   "D": "调用次数越多越好"
+  },
+  "answer": "A",
+  "explanation": "运维场景中的写操作（重启、删除、扩容）风险高，实践原则是模型只能自动执行只读查询，变更类操作必须有人工审批环节。",
+  "concept": "工具调用安全",
+  "source": "07-llm-for-aiops.md"
+ },
+ {
+  "id": "q-08-05",
+  "chapter": "08",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "评估一个“告警摘要大模型”的效果，下列哪组指标最合适？",
+  "options": {
+   "A": "摘要的事实一致性、关键信息覆盖率、幻觉率",
+   "B": "模型参数量和训练时长",
+   "C": "GPU 利用率和显存占用",
+   "D": "代码行数与注释比例"
+  },
+  "answer": "A",
+  "explanation": "摘要类任务关注内容是否忠实于原始告警（事实一致性）、要点是否遗漏（覆盖率）、是否编造不存在的信息（幻觉率）。",
+  "concept": "LLM 评估",
+  "source": "07-llm-for-aiops.md"
+ },
+ {
+  "id": "q-08-06",
+  "chapter": "08",
+  "difficulty": "advanced",
+  "type": "single_choice",
+  "stem": "构建 AIOps 助手时，把“只读查询自动执行、变更操作需人工确认”写成系统级约束，属于哪类工程实践？",
+  "options": {
+   "A": "数据标注",
+   "B": "护栏（Guardrail）与权限分级",
+   "C": "模型量化",
+   "D": "提示词压缩"
+  },
+  "answer": "B",
+  "explanation": "通过系统提示词+工具权限分级限制模型可执行的操作范围，是 LLM 应用典型的护栏工程，用于控制高风险动作。",
+  "concept": "护栏工程",
+  "source": "07-llm-for-aiops.md"
+ }
 ]

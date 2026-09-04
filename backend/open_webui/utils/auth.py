@@ -384,6 +384,12 @@ async def get_current_user(
                     detail=ERROR_MESSAGES.INVALID_TOKEN,
                 )
             else:
+                session_version = await Auths.get_session_version_by_id(user.id)
+                if int(data.get('sv', 0)) != session_version:
+                    raise HTTPException(
+                        status_code=status.HTTP_401_UNAUTHORIZED,
+                        detail='Session expired. Please sign in again.',
+                    )
                 if WEBUI_AUTH_TRUSTED_EMAIL_HEADER:
                     trusted_email = request.headers.get(WEBUI_AUTH_TRUSTED_EMAIL_HEADER, '').lower()
                     if trusted_email and user.email != trusted_email:

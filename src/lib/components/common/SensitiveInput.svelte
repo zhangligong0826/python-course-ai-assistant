@@ -51,6 +51,9 @@
 		required={required && !readOnly}
 		disabled={readOnly}
 		{autocomplete}
+		on:keydown
+		on:keyup
+		on:blur
 	/>
 	<button
 		class={buttonClass}

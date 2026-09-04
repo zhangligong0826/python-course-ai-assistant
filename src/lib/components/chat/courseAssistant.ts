@@ -40,7 +40,7 @@ export const COURSE_ACTIONS: CourseAction[] = [
 		title: '自测练习',
 		description: '调用题库工具生成练习、提交判分并给出复习建议。',
 		prompt:
-			'我想做自测练习。请先调用题库工具为我生成练习（章节：第02章；难度：beginner；题型：single_choice；数量：3），并在我提交答案后调用判分工具输出学习建议。',
+			'我想做自测练习。请先调用题库工具为我生成练习（章节：07；难度：beginner；题型：single_choice；数量：3），并在我提交答案后调用判分工具输出学习建议。',
 		accentClass: 'from-amber-400 via-orange-500 to-rose-500'
 	}
 ];

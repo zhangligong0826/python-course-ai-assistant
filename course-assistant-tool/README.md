@@ -8,7 +8,7 @@ COURSE_ASSISTANT_DB=/tmp/course_assistant_quizzes.db \
 ```
 
 - `GET /health`：健康检查
-- `POST /quiz/generate`：按章节、难度和题型抽题
+- `POST /quiz/generate`：按章节、难度和题型抽题（章节 `01`–`06` 为 Python 课程章节，`07` 为 AIOps 基础与可观测性，`08` 为大模型与智能运维）
 - `POST /quiz/grade`：提交答案并返回得分、逐题反馈与建议
 - `GET /docs`、`GET /openapi.json`：接口文档
 

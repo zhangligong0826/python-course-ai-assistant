@@ -20,7 +20,7 @@
 | 课程欢迎页与快捷入口 | `CourseWelcome.svelte`、`ChatPlaceholder.svelte`、`MessageInput.svelte` | 8 个 Vitest；只对 `meta.courseAssistant=true` 生效 |
 | 成绩卡 | `CourseGradeCard.svelte`、`courseAssistant.ts` | 兼容数值及题号数组两种 `course-grade` 格式；异常时保留 Markdown |
 | 液态玻璃界面 | `src/app.css`、`MessageInput.svelte`、`QuickActions.svelte` 等 | 玻璃化侧栏、输入面板、卡片、浮层；浏览器目视确认 |
-| 演示材料 | 本目录 | 见 [3-minute-demo.md](3-minute-demo.md)、`architecture.md` |
+| 演示材料 | 本目录 | 完整讲稿见 [demo-script.md](demo-script.md)（约 6 分钟），精简版见 [3-minute-demo.md](3-minute-demo.md)，架构见 `architecture.md` |
 
 ## 安全边界
 
@@ -74,7 +74,7 @@ VITE_WEBUI_HOSTNAME=127.0.0.1:8082 npm run dev -- --host 127.0.0.1 --port 5174
 npx vitest run src/lib/components/chat/courseAssistant.test.ts src/lib/components/chat/MessageInput/quickActions.test.ts
 ```
 
-架构见 [architecture.md](architecture.md)，**演示流程见 [3-minute-demo.md](3-minute-demo.md)**；11-final-acceptance.md 为开发期内部测试记录。
+架构见 [architecture.md](architecture.md)，**演示流程见 [3-minute-demo.md](3-minute-demo.md)**，完整讲稿见 [demo-script.md](demo-script.md)；课程开发要求逐条自查见 [13-requirements-checklist.md](13-requirements-checklist.md)；11-final-acceptance.md 为开发期内部测试记录。
 
 登录品牌与 Mailpit/SMTP 密码重置配置见 [auth-and-password-reset.md](auth-and-password-reset.md)。
 12-auth-acceptance.md 为认证功能的内部验证记录。
