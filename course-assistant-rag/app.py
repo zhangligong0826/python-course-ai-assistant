@@ -87,7 +87,7 @@ def search_chunks(query: str, limit: int = 3) -> list[dict]:
     ]
 
 
-@app.get("/health")
+@app.get("/health", operation_id="rag_health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
 

@@ -106,6 +106,9 @@
 	import InputModal from '../common/InputModal.svelte';
 	import Expand from '../icons/Expand.svelte';
 	import QueuedMessageItem from './MessageInput/QueuedMessageItem.svelte';
+	import QuickActions from './MessageInput/QuickActions.svelte';
+	import { prependQuickAction } from './MessageInput/quickActions';
+	import { COURSE_ACTIONS, isCourseAssistant } from './courseAssistant';
 	import TaskList from './Messages/ResponseMessage/TaskList.svelte';
 
 	const i18n = getContext('i18n');
@@ -132,6 +135,14 @@
 
 	let selectedModelIds = [];
 	$: selectedModelIds = atSelectedModel !== undefined ? [atSelectedModel.id] : selectedModels;
+	$: courseStatusText =
+		isCourseAssistant(atSelectedModel) && generating
+			? /判分|答案/.test(prompt)
+				? '正在判分并生成复习建议…'
+				: /练习|题目/.test(prompt)
+					? '正在生成练习题…'
+					: '正在检索课程资料…'
+			: '';
 	$: hasChatVariables = selectedModelIds.some(
 		(modelId) =>
 			($models.find((model) => model.id === modelId)?.info?.meta?.chat_variables_schema?.fields
@@ -378,6 +389,10 @@
 			await tick();
 			if (cb) await cb(text);
 		}
+	};
+
+	const insertQuickAction = async (quickPrompt: string) => {
+		await setText(prependQuickAction(quickPrompt, prompt));
 	};
 
 	export const showStatus = async () => {
@@ -1710,6 +1725,33 @@
 									{/each}
 								</div>
 							{/if}
+
+							{#if courseStatusText}
+								<div
+									class="mx-3 mb-2 flex items-center gap-2 text-xs font-medium text-indigo-600 dark:text-indigo-300"
+									data-testid="course-operation-status"
+								>
+									<Spinner className="size-3" />
+									{courseStatusText}
+								</div>
+							{/if}
+
+							{#if isCourseAssistant(atSelectedModel)}
+								<div class="mx-2 mb-2 flex flex-wrap gap-2" aria-label="Python 课程快捷操作">
+									{#each COURSE_ACTIONS as action (action.id)}
+										<button
+											type="button"
+											data-testid={`course-quick-action-${action.id}`}
+											class="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1.5 text-sm font-medium text-indigo-700 transition-colors hover:bg-indigo-100 focus:outline-hidden dark:border-indigo-800 dark:bg-indigo-950 dark:text-indigo-200 dark:hover:bg-indigo-900"
+											on:click={() => insertQuickAction(action.prompt)}
+										>
+											{action.title}
+										</button>
+									{/each}
+								</div>
+							{/if}
+
+							<QuickActions onSelect={insertQuickAction} />
 
 							<div class="px-2">
 								<div

@@ -9,6 +9,8 @@
 	import { blur, fade } from 'svelte/transition';
 
 	import Suggestions from './Suggestions.svelte';
+	import CourseWelcome from './CourseWelcome.svelte';
+	import { isCourseAssistant } from './courseAssistant';
 	import { sanitizeResponseContent } from '$lib/utils';
 	import Tooltip from '$lib/components/common/Tooltip.svelte';
 	import EyeSlash from '$lib/components/icons/EyeSlash.svelte';
@@ -29,6 +31,8 @@
 	}
 
 	$: models = modelIds.map((id) => $_models.find((m) => m.id === id));
+	$: selectedModel = atSelectedModel ?? models[selectedModelIdx];
+	$: showCourseWelcome = isCourseAssistant(selectedModel);
 
 	onMount(() => {
 		mounted = true;
@@ -133,14 +137,18 @@
 		</div>
 
 		<div class=" w-full" in:fade={{ duration: 200, delay: 300 }}>
-			<Suggestions
-				className="grid grid-cols-2"
-				suggestionPrompts={atSelectedModel?.info?.meta?.suggestion_prompts ??
-					models[selectedModelIdx]?.info?.meta?.suggestion_prompts ??
-					$config?.default_prompt_suggestions ??
-					[]}
-				{onSelect}
-			/>
+			{#if showCourseWelcome}
+				<CourseWelcome {onSelect} />
+			{:else}
+				<Suggestions
+					className="grid grid-cols-2"
+					suggestionPrompts={atSelectedModel?.info?.meta?.suggestion_prompts ??
+						models[selectedModelIdx]?.info?.meta?.suggestion_prompts ??
+						$config?.default_prompt_suggestions ??
+						[]}
+					{onSelect}
+				/>
+			{/if}
 		</div>
 	</div>
 {/key}

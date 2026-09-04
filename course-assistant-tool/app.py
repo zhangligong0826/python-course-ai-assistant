@@ -87,7 +87,7 @@ def load_quiz(quiz_id: str) -> list[dict] | None:
 initialize_database()
 
 
-@app.get("/health", tags=["system"])
+@app.get("/health", tags=["system"], operation_id="quiz_health")
 def health() -> dict[str, str]:
     return {"status": "ok"}
 

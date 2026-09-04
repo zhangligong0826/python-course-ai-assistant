@@ -3,6 +3,8 @@
 	const i18n = getContext('i18n');
 
 	import Markdown from './Markdown.svelte';
+	import CourseGradeCard from './CourseGradeCard.svelte';
+	import { extractCourseGrade, isCourseAssistant } from '../courseAssistant';
 	import StructuredOutputRenderer from './StructuredOutputRenderer.svelte';
 	import {
 		artifactCode,
@@ -99,6 +101,10 @@
 
 	let sourceIds = [];
 	$: getSourceIds(sources);
+	$: courseGradeResult =
+		isCourseAssistant(model) && !output?.length
+			? extractCourseGrade(content ?? '')
+			: { content, grade: null };
 
 	const getSourceIds = (sources) => {
 		const result = [];
@@ -303,7 +309,7 @@
 		<div class="markdown-prose">
 			<Markdown
 				{id}
-				content={formatMessageContent(content)}
+				content={formatMessageContent(courseGradeResult.content)}
 				{model}
 				{save}
 				{preview}
@@ -331,6 +337,9 @@
 		{#if extracted.plainContent}
 			<div class="whitespace-pre-wrap text-[0.9375rem]">{extracted.plainContent}</div>
 		{/if}
+	{/if}
+	{#if courseGradeResult.grade}
+		<CourseGradeCard grade={courseGradeResult.grade} />
 	{/if}
 </div>
 

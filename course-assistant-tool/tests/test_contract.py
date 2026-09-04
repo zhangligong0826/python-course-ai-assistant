@@ -46,3 +46,4 @@ def test_openapi_contract_exposes_health_and_quiz_routes() -> None:
     assert "/health" in schema["paths"]
     assert "/quiz/generate" in schema["paths"]
     assert "/quiz/grade" in schema["paths"]
+    assert schema["paths"]["/health"]["get"]["operationId"] == "quiz_health"

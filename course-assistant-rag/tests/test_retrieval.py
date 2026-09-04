@@ -41,6 +41,12 @@ def test_http_retrieve_contract() -> None:
     assert {"source", "chapter", "text", "score"} <= body["results"][0].keys()
 
 
+def test_openapi_uses_a_service_specific_health_operation_id() -> None:
+    client = TestClient(app)
+    schema = client.get("/openapi.json").json()
+    assert schema["paths"]["/health"]["get"]["operationId"] == "rag_health"
+
+
 def test_build_index_with_empty_dir_does_not_wipe_existing_index(tmp_path) -> None:
     build_index(MATERIALS)
     before = _chunk_count()
