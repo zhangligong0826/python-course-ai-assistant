@@ -1599,9 +1599,9 @@
 
 						<div
 							id="message-input-container"
-							class="flex-1 flex flex-col relative w-full shadow-lg rounded-3xl border {$temporaryChatEnabled
+							class="aiops-glass-panel flex-1 flex flex-col relative w-full rounded-3xl border {$temporaryChatEnabled
 								? 'border-dashed border-gray-100 dark:border-gray-800 hover:border-gray-200 focus-within:border-gray-200 hover:dark:border-gray-700 focus-within:dark:border-gray-700'
-								: ' border-gray-100/30 dark:border-gray-850/30 hover:border-gray-200 focus-within:border-gray-100 hover:dark:border-gray-800 focus-within:dark:border-gray-800'}  transition px-0.5 bg-white/5 dark:bg-gray-500/5 backdrop-blur-sm dark:text-gray-100"
+								: ' border-white/55 dark:border-white/10 hover:border-indigo-200 focus-within:border-indigo-300 hover:dark:border-white/20 focus-within:dark:border-indigo-400/40'} transition px-0.5 dark:text-gray-100"
 							dir={$settings?.chatDirection ?? 'auto'}
 						>
 							{#if atSelectedModel !== undefined}
@@ -1737,7 +1737,7 @@
 							{/if}
 
 							{#if isCourseAssistant(atSelectedModel)}
-								<div class="mx-2 mb-2 flex flex-wrap gap-2" aria-label="Python 课程快捷操作">
+								<div class="mx-4 mb-3 mt-1 flex flex-wrap gap-2" aria-label="AIOps 课程快捷操作">
 									{#each COURSE_ACTIONS as action (action.id)}
 										<button
 											type="button"

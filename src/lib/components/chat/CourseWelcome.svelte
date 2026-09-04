@@ -4,7 +4,7 @@
 	export let onSelect: (prompt: string) => void = () => {};
 </script>
 
-<section class="mt-5" aria-label="Python 课程学习入口">
+<section class="mt-5" aria-label="AIOps 智能运维学习入口">
 	<div
 		class="mb-4 flex items-center gap-2 text-sm font-medium text-indigo-700 dark:text-indigo-300"
 	>
@@ -12,14 +12,14 @@
 			class="flex size-6 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-950"
 			>✦</span
 		>
-		Python 程序设计学习路径
+		AIOps 智能运维学习路径
 	</div>
 	<div class="grid gap-3 md:grid-cols-3">
 		{#each COURSE_ACTIONS as action (action.id)}
 			<button
 				type="button"
 				data-testid={`course-action-${action.id}`}
-				class="group overflow-hidden rounded-2xl border border-gray-200 bg-white text-left shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-lg focus:outline-hidden focus:ring-2 focus:ring-indigo-500 dark:border-gray-800 dark:bg-gray-900"
+				class="aiops-glass-card group overflow-hidden rounded-2xl border border-white/60 text-left transition duration-200 hover:-translate-y-1 focus:outline-hidden focus:ring-2 focus:ring-indigo-500 dark:border-white/10"
 				on:click={() => onSelect(action.prompt)}
 			>
 				<div class={`h-1.5 bg-gradient-to-r ${action.accentClass}`}></div>

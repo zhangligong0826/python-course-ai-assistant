@@ -92,6 +92,7 @@
 	import DropdownMenu from '../common/DropdownMenu.svelte';
 	import CheckIcon from '../icons/Check.svelte';
 	import MoreHorizontalIcon from './Sidebar/icons/MoreHorizontal.svelte';
+	import HelpCircleIcon from './Sidebar/icons/HelpCircle.svelte';
 
 	const BREAKPOINT = 768;
 	const DEFAULT_PINNED_ITEMS = ['notes', 'workspace'];
@@ -1014,6 +1015,29 @@
 					</Tooltip>
 				</div>
 
+				<div>
+					<Tooltip content={$i18n.t('System Help')} placement="right">
+						<a
+							class="cursor-pointer flex size-8 items-center justify-center transition group"
+							href="/help"
+							on:click={(e) => {
+								e.stopImmediatePropagation();
+								e.preventDefault();
+								goto('/help');
+								itemClickHandler();
+							}}
+							draggable="false"
+							aria-label={$i18n.t('System Help')}
+						>
+							<div
+								class="self-center flex size-[30px] items-center justify-center rounded-lg transition group-hover:bg-gray-50 dark:group-hover:bg-gray-900"
+							>
+								<HelpCircleIcon className="size-4" strokeWidth="1.5" />
+							</div>
+						</a>
+					</Tooltip>
+				</div>
+
 				{#each pinnedItems as itemId (itemId)}
 					{@const meta = getMenuItemMeta(itemId)}
 					{#if meta && isMenuItemVisible(itemId)}
@@ -1109,8 +1133,8 @@
 		id="sidebar"
 		role="navigation"
 		aria-label={$i18n.t('Chat history')}
-		class="h-screen max-h-[100dvh] min-h-screen select-none {$showSidebar
-			? `${$mobile ? 'bg-gray-50 dark:bg-gray-950' : 'bg-gray-50/70 dark:bg-gray-950/70'} z-50`
+		class="aiops-glass-sidebar h-screen max-h-[100dvh] min-h-screen select-none {$showSidebar
+			? 'z-50'
 			: ' bg-transparent z-0 '} {$isApp
 			? `ml-[4.5rem] md:ml-0 `
 			: ' transition-all duration-300 '} shrink-0 text-gray-700 dark:text-gray-300 text-[13px] leading-5 fixed top-0 left-0 overflow-x-hidden
@@ -1132,12 +1156,12 @@
 					draggable="false"
 					on:click={newChatHandler}
 				>
-					<img
-						crossorigin="anonymous"
-						src="{WEBUI_BASE_URL}/static/favicon.png"
-						class="sidebar-new-chat-icon size-5 rounded-full"
-						alt=""
-					/>
+					<div
+						class="sidebar-new-chat-icon flex size-6 items-center justify-center rounded-lg bg-indigo-600 text-[9px] font-bold text-white"
+						aria-label="南开大学 AIOps 组"
+					>
+						NK
+					</div>
 				</a>
 
 				<a href="/" class="flex flex-1 px-0.5" on:click={newChatHandler}>
@@ -1145,7 +1169,7 @@
 						id="sidebar-webui-name"
 						class=" self-center font-normal text-gray-700 dark:text-gray-200"
 					>
-						{$WEBUI_NAME}
+						南开大学 AIOps 组
 					</div>
 				</a>
 				<Tooltip
@@ -1203,6 +1227,24 @@
 							</div>
 
 							<HotkeyHint name="newChat" className=" group-hover:visible invisible" />
+						</a>
+					</div>
+
+					<div class="px-1 flex justify-center text-gray-700 dark:text-gray-300">
+						<a
+							id="sidebar-help-button"
+							class="grow flex items-center space-x-2 rounded-xl px-2 py-1.5 transition hover:bg-gray-50 dark:hover:bg-gray-900"
+							href="/help"
+							on:click={itemClickHandler}
+							draggable="false"
+							aria-label={$i18n.t('System Help')}
+						>
+							<div class="self-center flex size-4 shrink-0 items-center justify-center">
+								<HelpCircleIcon className="size-4" strokeWidth="1.5" />
+							</div>
+							<div class="flex self-center translate-y-[0.5px]">
+								<div class="self-center text-[13px] leading-5">{$i18n.t('System Help')}</div>
+							</div>
 						</a>
 					</div>
 

@@ -7,12 +7,15 @@
 	export let onSelect: (prompt: string) => void = () => {};
 </script>
 
-<div class="mx-2 mb-2 flex flex-wrap gap-2" aria-label={$i18n.t('Quick actions')}>
+<div
+	class="aiops-glass-chip-row mx-4 mb-4 mt-4 flex flex-wrap gap-2.5"
+	aria-label={$i18n.t('Quick actions')}
+>
 	{#each QUICK_ACTIONS as action (action.id)}
 		<button
 			type="button"
 			data-testid={`quick-action-${action.id}`}
-			class="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm text-gray-700 transition-colors hover:border-gray-300 hover:bg-gray-50 focus:outline-hidden dark:border-gray-700 dark:bg-gray-900 dark:text-gray-200 dark:hover:border-gray-600 dark:hover:bg-gray-800"
+			class="aiops-glass-chip rounded-full border border-white/70 px-3.5 py-1.5 text-sm text-gray-700 transition hover:-translate-y-px hover:border-indigo-200 focus:outline-hidden focus:ring-2 focus:ring-indigo-300 dark:border-white/10 dark:text-gray-200"
 			on:click={() => onSelect($i18n.t(action.promptKey))}
 		>
 			{$i18n.t(action.labelKey)}

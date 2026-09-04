@@ -1,5 +1,8 @@
 # 固定 15 条验收测试集
 
+> 文档定位：本文为开发期内部回归用例集；对外演示口径统一为"演示"，演示脚本见 [3-minute-demo.md](3-minute-demo.md)。
+> 注：以下为 Python 方向历史用例；AIOps 方向的定向检索用例见 `evidence/aiops-rag-retrieval.txt`。
+
 1. 基础语法概念问答（引用 01）
 2. 缩进错误解释（引用 01）
 3. `for` 与 `while` 对比（引用 02）

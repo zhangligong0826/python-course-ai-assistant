@@ -22,25 +22,25 @@ export type CourseGrade = {
 export const COURSE_ACTIONS: CourseAction[] = [
 	{
 		id: 'ask',
-		title: '课程问答',
-		description: '先检索课程资料，再用带引用的方式解释。',
-		prompt: '请先检索 Python 程序设计课程资料，再回答我的问题，并在结尾列出资料依据：',
+		title: '知识问答',
+		description: '先检索 AIOps 知识库，再用带引用的方式解释。',
+		prompt: '请先检索 AIOps 智能运维知识库，再回答我的问题，并在结尾列出资料依据：',
 		accentClass: 'from-indigo-500 via-violet-500 to-fuchsia-500'
 	},
 	{
 		id: 'practice',
-		title: '生成练习',
-		description: '按章节、难度和题型生成针对性练习。',
+		title: '故障诊断',
+		description: '基于告警、指标和日志做根因分析与处置建议。',
 		prompt:
-			'请调用题库工具，为我生成练习。章节：第02章；难度：beginner；题型：single_choice；数量：3。',
+			'请检索 AIOps 知识库，按照"现象分析→可能根因→排查步骤→处置建议"的结构，帮我演练一个运维故障诊断场景：服务接口响应时间突增、错误率上升。',
 		accentClass: 'from-cyan-500 via-sky-500 to-indigo-500'
 	},
 	{
 		id: 'grade',
-		title: '提交答案',
-		description: '自动判分并给出错因和复习建议。',
+		title: '自测练习',
+		description: '调用题库工具生成练习、提交判分并给出复习建议。',
 		prompt:
-			'我想提交练习答案。请先向我索取 quiz_id 和每道题的答案，然后调用判分工具并输出学习建议。',
+			'我想做自测练习。请先调用题库工具为我生成练习（章节：第02章；难度：beginner；题型：single_choice；数量：3），并在我提交答案后调用判分工具输出学习建议。',
 		accentClass: 'from-amber-400 via-orange-500 to-rose-500'
 	}
 ];

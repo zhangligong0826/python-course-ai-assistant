@@ -1,17 +1,26 @@
-# Python 课程 AI 助教交付说明
+# AIOps 智能运维课程助教交付说明
 
-这是一个仅对 `python-course-assistant` 生效的 Open WebUI 课程助教增强：课程问答优先检索已绑定知识库，练习由题库 OpenAPI 工具生成，提交答案后将稳定的 `course-grade` 块渲染为成绩卡。其他模型继续使用原有欢迎页和通用 Quick Actions。
+这是一个仅对课程助教模型（`courseAssistant=true`，当前为 `course-aiops-assistant`）生效的 Open WebUI 课程助教增强：课程问答优先检索已绑定知识库，练习由题库 OpenAPI 工具生成，提交答案后将稳定的 `course-grade` 块渲染为成绩卡。其他模型继续使用原有欢迎页和通用 Quick Actions。
+
+> 定位说明：本项目对外统一使用**演示**口径（见 [3-minute-demo.md](3-minute-demo.md)）。早期开发过程中形成的 10/11/12 号"验收"文档作为内部测试记录保留，演示底稿以演示脚本与演示记录为准。
+
+## 知识库方向
+
+- **当前课程方向：AIOps 智能运维**。知识库为"AIOps 智能运维知识库"，资料位于 `course-materials/aiops/`（10 份正文：AIOps 基础、SRE 与可观测性、LLM4Ops、模型选型数据卡、事故管理、异常检测、根因分析、大模型基础与主流模型数据卡、工具生态、故障案例），隔离实例使用嵌入模型 `bge-m3`。
+- `course-materials/python-programming/`（Python 程序设计资料）保留在仓库中，作为题库练习工具的配套资料，不删除。
+- 前端课程入口文案已同步为 AIOps 方向（"知识问答 / 故障诊断 / 自测练习"三张卡片）。
 
 ## 交付内容
 
-| 能力 | 实现位置 | 验收方式 |
+| 能力 | 实现位置 | 演示/验证方式 |
 | --- | --- | --- |
-| 原生中文语义知识库 | 10 份 `course-materials/python-programming/` 资料；隔离实例使用 `BAAI/bge-small-zh-v1.5` | 原生 `query/collection` 与真实保存会话检索通过 |
+| AIOps 专精知识库 | 11 份 `course-materials/aiops/` 资料；隔离实例使用 `bge-m3` | 11 个定向检索用例全部命中（见 `evidence/aiops-rag-retrieval.txt`）；引用对话见 `evidence/aiops-citation-chat.txt` |
 | 题库工具 | `course-assistant-tool/` | 16 个 pytest；抽题、判分真实模型调用 |
 | 轻量检索工具 | `course-assistant-rag/` | 6 个 pytest；检索真实模型调用 |
 | 课程欢迎页与快捷入口 | `CourseWelcome.svelte`、`ChatPlaceholder.svelte`、`MessageInput.svelte` | 8 个 Vitest；只对 `meta.courseAssistant=true` 生效 |
 | 成绩卡 | `CourseGradeCard.svelte`、`courseAssistant.ts` | 兼容数值及题号数组两种 `course-grade` 格式；异常时保留 Markdown |
-| 交付与验收 | 本目录 | 见 `11-final-acceptance.md`、`architecture.md`、`3-minute-demo.md` |
+| 液态玻璃界面 | `src/app.css`、`MessageInput.svelte`、`QuickActions.svelte` 等 | 玻璃化侧栏、输入面板、卡片、浮层；浏览器目视确认 |
+| 演示材料 | 本目录 | 见 [3-minute-demo.md](3-minute-demo.md)、`architecture.md` |
 
 ## 安全边界
 
@@ -65,4 +74,7 @@ VITE_WEBUI_HOSTNAME=127.0.0.1:8082 npm run dev -- --host 127.0.0.1 --port 5174
 npx vitest run src/lib/components/chat/courseAssistant.test.ts src/lib/components/chat/MessageInput/quickActions.test.ts
 ```
 
-架构见 [architecture.md](architecture.md)，演示流程见 [3-minute-demo.md](3-minute-demo.md)，最终验收见 [11-final-acceptance.md](11-final-acceptance.md)。
+架构见 [architecture.md](architecture.md)，**演示流程见 [3-minute-demo.md](3-minute-demo.md)**；11-final-acceptance.md 为开发期内部测试记录。
+
+登录品牌与 Mailpit/SMTP 密码重置配置见 [auth-and-password-reset.md](auth-and-password-reset.md)。
+12-auth-acceptance.md 为认证功能的内部验证记录。

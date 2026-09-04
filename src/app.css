@@ -15,6 +15,134 @@
 /* --app-text-scale is updated via the UI Scale slider (Interface.svelte) */
 :root {
 	--app-text-scale: 1;
+	--glass-surface: rgba(255, 255, 255, 0.58);
+	--glass-border: rgba(255, 255, 255, 0.72);
+	--glass-shadow: 0 18px 55px rgba(67, 56, 202, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.dark {
+	--glass-surface: rgba(17, 24, 39, 0.55);
+	--glass-border: rgba(255, 255, 255, 0.1);
+	--glass-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.aiops-liquid-shell {
+	background:
+		radial-gradient(circle at 14% 18%, rgba(99, 102, 241, 0.15), transparent 32rem),
+		radial-gradient(circle at 86% 82%, rgba(20, 184, 166, 0.12), transparent 34rem),
+		linear-gradient(145deg, #f8f9ff 0%, #f5fbff 48%, #fbf7ff 100%);
+}
+
+.dark .aiops-liquid-shell {
+	background:
+		radial-gradient(circle at 14% 18%, rgba(79, 70, 229, 0.18), transparent 34rem),
+		radial-gradient(circle at 86% 82%, rgba(13, 148, 136, 0.12), transparent 36rem),
+		linear-gradient(145deg, #080b16 0%, #0d1220 52%, #11101d 100%);
+}
+
+.aiops-glass-sidebar,
+.aiops-glass-panel,
+.aiops-glass-card,
+.aiops-glass-chip {
+	background: var(--glass-surface);
+	border-color: var(--glass-border);
+	box-shadow: var(--glass-shadow);
+	-webkit-backdrop-filter: blur(20px) saturate(145%);
+	backdrop-filter: blur(20px) saturate(145%);
+}
+
+.aiops-glass-sidebar {
+	background: color-mix(in srgb, var(--glass-surface) 88%, transparent);
+}
+
+.aiops-glass-panel {
+	box-shadow:
+		0 16px 50px rgba(67, 56, 202, 0.13),
+		inset 0 1px 0 rgba(255, 255, 255, 0.78);
+}
+
+.aiops-glass-card:hover {
+	box-shadow:
+		0 22px 48px rgba(79, 70, 229, 0.16),
+		inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.aiops-glass-chip {
+	box-shadow:
+		0 6px 18px rgba(79, 70, 229, 0.07),
+		inset 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+/* ---- Liquid glass: global surface layer ---- */
+/* .shadow-3xl is Open WebUI's shared elevation class for modal dialogs and
+   floating dropdown popovers; glassifying it inside the liquid shell gives
+   the whole interface a consistent frosted-glass surface. */
+.aiops-liquid-shell .shadow-3xl {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.02)),
+		var(--glass-surface);
+	border: 1px solid var(--glass-border);
+	box-shadow: var(--glass-shadow);
+	-webkit-backdrop-filter: blur(26px) saturate(160%);
+	backdrop-filter: blur(26px) saturate(160%);
+}
+
+.dark .aiops-liquid-shell .shadow-3xl {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0)),
+		var(--glass-surface);
+}
+
+/* User chat bubbles float on the gradient shell — frost them too. */
+.aiops-liquid-shell .user-message [class*='rounded-3xl'] {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.04)),
+		var(--glass-surface);
+	border: 1px solid var(--glass-border);
+	-webkit-backdrop-filter: blur(18px) saturate(150%);
+	backdrop-filter: blur(18px) saturate(150%);
+}
+
+/* Frosted toolbars / secondary cards (knowledge, files, settings panels). */
+.aiops-liquid-shell .bg-gray-50.dark\:bg-gray-800.rounded-3xl,
+.aiops-liquid-shell .bg-white.dark\:bg-gray-900.rounded-xl,
+.aiops-liquid-shell .bg-white.dark\:bg-gray-850.rounded-xl {
+	background:
+		linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.03)),
+		var(--glass-surface);
+	border: 1px solid var(--glass-border);
+	-webkit-backdrop-filter: blur(16px) saturate(145%);
+	backdrop-filter: blur(16px) saturate(145%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+	.aiops-glass-sidebar,
+	.aiops-glass-panel,
+	.aiops-glass-card,
+	.aiops-glass-chip {
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+		background: rgb(255 255 255 / 0.96);
+	}
+
+	.dark .aiops-glass-sidebar,
+	.dark .aiops-glass-panel,
+	.dark .aiops-glass-card,
+	.dark .aiops-glass-chip {
+		background: rgb(17 24 39 / 0.96);
+	}
+
+	.aiops-liquid-shell .shadow-3xl,
+	.aiops-liquid-shell .user-message [class*='rounded-3xl'] {
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+		background: rgb(255 255 255 / 0.97);
+	}
+
+	.dark .aiops-liquid-shell .shadow-3xl,
+	.dark .aiops-liquid-shell .user-message [class*='rounded-3xl'] {
+		background: rgb(17 24 39 / 0.97);
+	}
 }
 
 html {
