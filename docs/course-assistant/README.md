@@ -15,8 +15,8 @@
 | 能力 | 实现位置 | 演示/验证方式 |
 | --- | --- | --- |
 | AIOps 专精知识库 | 11 份 `course-materials/aiops/` 资料；隔离实例使用 `bge-m3` | 11 个定向检索用例全部命中（见 `evidence/aiops-rag-retrieval.txt`）；引用对话见 `evidence/aiops-citation-chat.txt` |
-| 题库工具 | `course-assistant-tool/` | 16 个 pytest；抽题、判分真实模型调用 |
-| 轻量检索工具 | `course-assistant-rag/` | 6 个 pytest；检索真实模型调用 |
+| 题库工具 | `course-assistant-tool/` | 17 个 pytest；抽题、判分真实模型调用 |
+| 轻量检索工具 | `course-assistant-rag/` | 8 个 pytest；检索真实模型调用 |
 | 课程欢迎页与快捷入口 | `CourseWelcome.svelte`、`ChatPlaceholder.svelte`、`MessageInput.svelte` | 8 个 Vitest；只对 `meta.courseAssistant=true` 生效 |
 | 成绩卡 | `CourseGradeCard.svelte`、`courseAssistant.ts` | 兼容数值及题号数组两种 `course-grade` 格式；异常时保留 Markdown |
 | 液态玻璃界面 | `src/app.css`、`MessageInput.svelte`、`QuickActions.svelte` 等 | 玻璃化侧栏、输入面板、卡片、浮层；浏览器目视确认 |
@@ -35,10 +35,13 @@
 ```bash
 # 终端 1：题库 OpenAPI（默认 8091）
 cd course-assistant-tool
+COURSE_ASSISTANT_QUIZ_TTL_SECONDS=3600 \
 ../.venv/bin/uvicorn app:app --host 127.0.0.1 --port 8091
 
 # 终端 2：轻量检索 OpenAPI（默认 8092）
 cd course-assistant-rag
+COURSE_ASSISTANT_RAG_DB=/private/tmp/aiops_course_rag.db ../.venv/bin/python app.py --build-index
+COURSE_ASSISTANT_RAG_DB=/private/tmp/aiops_course_rag.db \
 ../.venv/bin/uvicorn app:app --host 127.0.0.1 --port 8092
 
 # 终端 3：隔离 Open WebUI（示例端口 8082）

@@ -1,0 +1,41 @@
+name: Course Assistant CI
+
+on:
+  push:
+    paths:
+      - 'course-assistant-rag/**'
+      - 'course-assistant-tool/**'
+      - 'src/lib/components/chat/courseAssistant.ts'
+      - 'src/lib/components/chat/courseAssistant.test.ts'
+      - '.github/workflows/course-assistant.yaml'
+  pull_request:
+    paths:
+      - 'course-assistant-rag/**'
+      - 'course-assistant-tool/**'
+      - 'src/lib/components/chat/courseAssistant.ts'
+      - 'src/lib/components/chat/courseAssistant.test.ts'
+      - '.github/workflows/course-assistant.yaml'
+
+jobs:
+  python-services:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [course-assistant-rag, course-assistant-tool]
+    steps:
+      - uses: actions/checkout@v5
+      - uses: astral-sh/setup-uv@v7
+      - name: Run ${{ matrix.project }} tests
+        working-directory: ${{ matrix.project }}
+        run: uv run --frozen pytest
+
+  frontend-contract:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --force
+      - run: npx vitest run src/lib/components/chat/courseAssistant.test.ts

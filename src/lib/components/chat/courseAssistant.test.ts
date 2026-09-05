@@ -14,9 +14,10 @@ describe('course assistant presentation helpers', () => {
 
 	it('extracts a valid grade payload and leaves the explanation visible', () => {
 		const result = extractCourseGrade(
-			'本次练习已完成。\n```course-grade\n{"score":3,"max_score":5,"correct":3,"wrong":1,"missing":1,"recommendations":["复习函数参数"]}\n```'
+			'本次练习已完成。\n```course-grade\n{"score":3,"max_score":5,"correct":3,"wrong":1,"missing":1,"results":[{"question_id":"q-01","status":"correct"}],"recommendations":["复习函数参数"]}\n```'
 		);
 		expect(result.grade).toMatchObject({ score: 3, maxScore: 5, wrong: 1 });
+		expect(result.grade?.results).toEqual([{ questionId: 'q-01', status: 'correct' }]);
 		expect(result.content).toBe('本次练习已完成。');
 	});
 
