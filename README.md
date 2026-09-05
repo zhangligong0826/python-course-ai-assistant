@@ -220,3 +220,5 @@ npm run test:frontend -- --run
 ## 开源基础与许可证
 
 本项目基于 [Open WebUI](https://github.com/open-webui/open-webui) 二次开发。原项目代码及本仓库新增内容继续遵循仓库中的 [LICENSE](LICENSE) 与 [LICENSE_HISTORY](LICENSE_HISTORY)；使用、分发和部署前请阅读相应条款并保留所要求的归属信息。
+
+欢迎通过 Fork 和 Pull Request 参与改进。提交前请阅读 [贡献指南](CONTRIBUTING.md)，其中说明了课程服务契约、脱敏要求和必须执行的测试。

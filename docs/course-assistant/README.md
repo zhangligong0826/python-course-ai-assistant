@@ -81,3 +81,7 @@ npx vitest run src/lib/components/chat/courseAssistant.test.ts src/lib/component
 
 登录品牌与 Mailpit/SMTP 密码重置配置见 [auth-and-password-reset.md](auth-and-password-reset.md)。
 12-auth-acceptance.md 为认证功能的内部验证记录。
+
+## 贡献与回归
+
+外部贡献请遵循仓库根目录的 [贡献指南](../../CONTRIBUTING.md)。特别注意：8092 必须用 `app.py --build-index` 离线建立索引，空索引检索应返回 503；8091 判分响应必须保留正确、错误和漏答统计，测验 TTL 过期后不得继续判分。修改这些契约时，请同步补充测试和文档。
