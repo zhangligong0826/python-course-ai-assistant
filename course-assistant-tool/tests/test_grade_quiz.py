@@ -31,6 +31,8 @@ def test_grade_returns_score_and_per_question_feedback() -> None:
     assert response.status_code == 200
     payload = response.json()
     assert payload["score"] == payload["max_score"] == len(questions)
+    assert payload["correct"] == len(questions)
+    assert payload["wrong"] == payload["missing"] == 0
     assert all(item["correct"] for item in payload["results"])
     assert all(item["source"] for item in payload["results"])
 
@@ -45,6 +47,9 @@ def test_grade_handles_wrong_and_missing_answers() -> None:
     assert response.status_code == 200
     payload = response.json()
     assert payload["score"] == 0
+    assert payload["correct"] == 0
+    assert payload["wrong"] == 1
+    assert payload["missing"] == len(questions) - 1
     assert len(payload["results"]) == len(questions)
     assert any(item["status"] == "missing" for item in payload["results"])
     assert payload["recommendations"]

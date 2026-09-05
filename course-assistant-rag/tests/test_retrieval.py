@@ -3,6 +3,7 @@ import sqlite3
 
 from fastapi.testclient import TestClient
 
+import app as rag_app
 from app import DB_PATH, app, build_index, search_chunks
 
 
@@ -56,6 +57,14 @@ def test_openapi_uses_a_service_specific_health_operation_id() -> None:
     client = TestClient(app)
     schema = client.get("/openapi.json").json()
     assert schema["paths"]["/health"]["get"]["operationId"] == "rag_health"
+    assert "/index" not in schema["paths"]
+
+
+def test_retrieve_requires_an_offline_index(tmp_path, monkeypatch) -> None:
+    monkeypatch.setattr(rag_app, "DB_PATH", tmp_path / "empty.db")
+    response = TestClient(app).post("/retrieve", json={"query": "SLO", "limit": 2})
+    assert response.status_code == 503
+    assert "--build-index" in response.json()["detail"]
 
 
 def test_build_index_with_empty_dir_does_not_wipe_existing_index(tmp_path) -> None:

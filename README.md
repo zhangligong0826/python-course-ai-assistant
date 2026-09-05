@@ -88,6 +88,7 @@ backend/                    Open WebUI 后端与密码重置能力
 ```bash
 cd course-assistant-tool
 COURSE_ASSISTANT_DB=/private/tmp/aiops_quizzes.db \
+COURSE_ASSISTANT_QUIZ_TTL_SECONDS=3600 \
 ../.venv/bin/uvicorn app:app --host 127.0.0.1 --port 8091
 ```
 
@@ -95,10 +96,12 @@ COURSE_ASSISTANT_DB=/private/tmp/aiops_quizzes.db \
 
 ```bash
 cd course-assistant-rag
+COURSE_ASSISTANT_RAG_DB=/private/tmp/aiops_course_rag.db ../.venv/bin/python app.py --build-index
+COURSE_ASSISTANT_RAG_DB=/private/tmp/aiops_course_rag.db \
 ../.venv/bin/uvicorn app:app --host 127.0.0.1 --port 8092
 ```
 
-首次启动后执行 `curl -X POST http://127.0.0.1:8092/index` 建立索引。
+索引只能通过离线命令重建，OpenAPI 仅暴露只读检索，避免模型调用过程中误清空或重建索引。
 
 ### 3. 隔离后端
 

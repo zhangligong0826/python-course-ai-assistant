@@ -4,13 +4,15 @@
 
 ```bash
 COURSE_ASSISTANT_DB=/tmp/course_assistant_quizzes.db \
+COURSE_ASSISTANT_QUIZ_TTL_SECONDS=3600 \
   .venv/bin/python course-assistant-tool/app.py
 ```
 
 - `GET /health`：健康检查
 - `POST /quiz/generate`：按章节、难度和题型抽题（章节 `01`–`06` 为 Python 课程章节，`07` 为 AIOps 基础与可观测性，`08` 为大模型与智能运维）
-- `POST /quiz/grade`：提交答案并返回得分、逐题反馈与建议
+- `POST /quiz/grade`：提交答案并返回得分、正确/错误/漏答统计、逐题反馈与建议
 - `GET /docs`、`GET /openapi.json`：接口文档
 
 题库为仓库内种子数据；测验会话使用 SQLite 持久化，数据库路径通过
-`COURSE_ASSISTANT_DB` 指定，默认位于系统临时目录，不写入仓库。
+`COURSE_ASSISTANT_DB` 指定，默认位于系统临时目录，不写入仓库。测验默认保留
+1 小时，可通过 `COURSE_ASSISTANT_QUIZ_TTL_SECONDS` 调整，过期记录会自动清理。

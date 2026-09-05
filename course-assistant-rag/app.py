@@ -6,13 +6,15 @@ DeepSeek 仍负责生成回答。资料规模较小时，这比下载和维护�
 
 from __future__ import annotations
 
+import argparse
+import os
 import re
 import sqlite3
 import tempfile
 from collections.abc import Iterable
 from pathlib import Path
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 
@@ -21,7 +23,7 @@ DEFAULT_MATERIALS = (
     ROOT / "course-materials" / "python-programming",
     ROOT / "course-materials" / "aiops",
 )
-DB_PATH = Path(tempfile.gettempdir()) / "python_course_rag.db"
+DB_PATH = Path(os.getenv("COURSE_ASSISTANT_RAG_DB", Path(tempfile.gettempdir()) / "python_course_rag.db"))
 
 app = FastAPI(title="Python Course Lightweight RAG", version="1.0.0")
 
@@ -98,21 +100,22 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
-@app.post("/index")
-def index_materials() -> dict[str, int]:
-    return {"chunks": build_index()}
-
-
 @app.post("/retrieve")
 def retrieve(request: RetrieveRequest) -> dict[str, list[dict]]:
     with _connect() as connection:
         count = connection.execute("SELECT COUNT(*) FROM chunks").fetchone()[0]
     if count == 0:
-        build_index()
+        raise HTTPException(status_code=503, detail="course index is empty; run app.py --build-index first")
     return {"results": search_chunks(request.query, request.limit)}
 
 
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("app:app", host="127.0.0.1", port=8092)
+    parser = argparse.ArgumentParser(description="Build or serve the lightweight course index")
+    parser.add_argument("--build-index", action="store_true", help="Build the local index and exit")
+    args = parser.parse_args()
+    if args.build_index:
+        print(f"indexed_chunks={build_index()}")
+    else:
+        uvicorn.run("app:app", host="127.0.0.1", port=8092)
